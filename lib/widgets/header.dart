@@ -11,61 +11,45 @@ class AppHeader extends StatelessWidget {
       // Event handler for buttons that don't do anything yet
     }
 
-    // Helper that shows the mobile nav as a bottom sheet
-    void openMobileNav() {
-      showModalBottomSheet(
-        context: context,
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.vertical(top: Radius.circular(12)),
-        ),
-        builder: (ctx) {
-          return SafeArea(
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                ListTile(
-                  title: const Text('Home'),
-                  onTap: () {
-                    Navigator.of(ctx).pop();
-                    Navigator.pushNamedAndRemoveUntil(context, '/', (r) => false);
-                  },
-                ),
-                ListTile(
-                  title: const Text('Shop'),
-                  onTap: () {
-                    Navigator.of(ctx).pop();
-                    Navigator.pushNamed(context, '/product');
-                  },
-                ),
-                ListTile(
-                  title: const Text('The Print Shop'),
-                  onTap: () {
-                    Navigator.of(ctx).pop();
-                    // Replace with real route if you add one
-                    Navigator.pushNamed(context, '/product');
-                  },
-                ),
-                ListTile(
-                  title: const Text('SALE!'),
-                  onTap: () {
-                    Navigator.of(ctx).pop();
-                    // Placeholder action
-                    placeholderCallbackForButtons();
-                  },
-                ),
-                ListTile(
-                  title: const Text('About'),
-                  onTap: () {
-                    Navigator.of(ctx).pop();
-                    placeholderCallbackForButtons();
-                  },
-                ),
-                const SizedBox(height: 8),
-              ],
-            ),
-          );
-        },
+    Future<void> openMobileNav() async {
+      final RenderBox overlay = Overlay.of(context).context.findRenderObject() as RenderBox;
+      const double top = kToolbarHeight + 8;
+      final RelativeRect position = RelativeRect.fromLTRB(
+        overlay.size.width - 200, // left
+        top,                      // top
+        16,                       // right
+        0,                        // bottom
       );
+
+      final String? selected = await showMenu<String>(
+        context: context,
+        position: position,
+        items: <PopupMenuEntry<String>>[
+          const PopupMenuItem<String>(value: 'home', child: Text('Home')),
+          const PopupMenuItem<String>(value: 'shop', child: Text('Shop')),
+          const PopupMenuItem<String>(value: 'print', child: Text('The Print Shop')),
+          const PopupMenuItem<String>(value: 'sale', child: Text('SALE!')),
+          const PopupMenuItem<String>(value: 'about', child: Text('About')),
+        ],
+      );
+
+      if (selected == null) return;
+
+      switch (selected) {
+        case 'home':
+          Navigator.pushNamedAndRemoveUntil(context, '/', (r) => false);
+          break;
+        case 'shop':
+          Navigator.pushNamed(context, '/product');
+          break;
+        case 'print':
+          Navigator.pushNamed(context, '/product'); 
+          break;
+        case 'sale':
+        case 'about':
+          placeholderCallbackForButtons();
+          break;
+      }
     }
 
     // Main header structure: top banner + responsive main bar
@@ -185,19 +169,11 @@ class AppHeader extends StatelessWidget {
                         constraints: const BoxConstraints(minWidth: 32, minHeight: 32),
                       ),
 
-                      // Mobile hamburger
+                      // Mobile hamburger - uses showMenu
                       if (isMobile)
                         IconButton(
                           icon: const Icon(Icons.menu, size: 20, color: Colors.grey),
                           onPressed: openMobileNav,
-                          padding: const EdgeInsets.all(8),
-                          constraints: const BoxConstraints(minWidth: 32, minHeight: 32),
-                        )
-                      else
-                        // Desktop keeps the menu icon too (optional)
-                        IconButton(
-                          icon: const Icon(Icons.menu, size: 20, color: Colors.grey),
-                          onPressed: placeholderCallbackForButtons,
                           padding: const EdgeInsets.all(8),
                           constraints: const BoxConstraints(minWidth: 32, minHeight: 32),
                         ),
