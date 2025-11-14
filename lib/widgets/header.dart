@@ -25,6 +25,47 @@ class AppHeader extends StatelessWidget {
               style: TextStyle(color: Colors.white, fontSize: 16),
             ),
           ),
+
+          // 
+
+          Center(
+            child: Container(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+
+
+                children: [
+                  TextButton(
+                    onPressed: placeholderCallbackForButtons,
+                    child: const Text('Home'),
+                  ),
+                  TextButton(
+                    onPressed: placeholderCallbackForButtons,
+                    child: const Text('Shop'),
+                  ),
+                  TextButton(
+                    onPressed: placeholderCallbackForButtons,
+                    child: const Text('The Print Shop'),
+                  ),
+                  TextButton(
+                    onPressed: placeholderCallbackForButtons,
+                    child: const Text('SALE!'),
+                  ),
+                  TextButton(
+                    onPressed: placeholderCallbackForButtons,
+                    child: const Text('About'),
+                  ),
+
+
+                ],
+              ),
+            
+            ),
+          ),
+
+
+
           // Main header
           Expanded(
             child: Container(
