@@ -26,7 +26,7 @@ class AppHeader extends StatelessWidget {
         position: position,
         items: <PopupMenuEntry<String>>[
           const PopupMenuItem<String>(value: 'home', child: Text('Home')),
-          const PopupMenuItem<String>(value: 'shop', child: Text('Shop')),
+          const PopupMenuItem<String>(value: 'collections', child: Text('Collections')),
           const PopupMenuItem<String>(value: 'print', child: Text('The Print Shop')),
           const PopupMenuItem<String>(value: 'sale', child: Text('SALE!')),
           const PopupMenuItem<String>(value: 'about', child: Text('About')),
@@ -39,8 +39,8 @@ class AppHeader extends StatelessWidget {
         case 'home':
           Navigator.pushNamedAndRemoveUntil(context, '/', (r) => false);
           break;
-        case 'shop':
-          Navigator.pushNamed(context, '/product');
+        case 'collections':
+          Navigator.pushNamed(context, '/collections');
           break;
         case 'print':
           Navigator.pushNamed(context, '/product'); 
@@ -119,10 +119,17 @@ class AppHeader extends StatelessWidget {
                               },
                               child: const Text('Home'),
                             ),
-                            TextButton(
-                              onPressed: () {
-                                Navigator.pushNamed(context, '/product');
+                            // Shop button becomes a dropdown listing collections
+                            PopupMenuButton<String>(
+                              onSelected: (value) {
+                                // Navigate to collections and pass the selected collection name
+                                Navigator.pushNamed(context, '/collections', arguments: value);
                               },
+                              itemBuilder: (ctx) => const [
+                                PopupMenuItem(value: 'Study Essentials', child: Text('Study Essentials')),
+                                PopupMenuItem(value: 'Apparel', child: Text('Apparel')),
+                                PopupMenuItem(value: 'Gifts & Home', child: Text('Gifts & Home')),
+                              ],
                               child: const Text('Shop'),
                             ),
                             TextButton(
