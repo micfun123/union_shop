@@ -75,16 +75,18 @@ class AppFooter extends StatelessWidget {
                     ),
                   ),
 
-                  // Middle: policy links
+                  // Middle: policy links (use Wrap to avoid overflow on narrow widths)
                   Expanded(
                     flex: 2,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [ 
-                        TextButton(onPressed: placeholder, child: const Text('Privacy Policy')),
-                        const SizedBox(width: 16),
-                        TextButton(onPressed: placeholder, child: const Text('Terms of Service')),
-                      ],
+                    child: Center(
+                      child: Wrap(
+                        spacing: 16,
+                        alignment: WrapAlignment.center,
+                        children: [
+                          TextButton(onPressed: placeholder, child: const Text('Privacy Policy')),
+                          TextButton(onPressed: placeholder, child: const Text('Terms of Service')),
+                        ],
+                      ),
                     ),
                   ),
 
