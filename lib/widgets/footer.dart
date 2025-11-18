@@ -62,7 +62,7 @@ class AppFooter extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   // Left: copyright
-                  Expanded(
+                  const Expanded(
                     flex: 3,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -80,7 +80,7 @@ class AppFooter extends StatelessWidget {
                     flex: 2,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
+                      children: [ 
                         TextButton(onPressed: placeholder, child: const Text('Privacy Policy')),
                         const SizedBox(width: 16),
                         TextButton(onPressed: placeholder, child: const Text('Terms of Service')),
@@ -89,14 +89,14 @@ class AppFooter extends StatelessWidget {
                   ),
 
                   // Right: opening hours / help info
-                  Expanded(
+                  const Expanded(
                     flex: 4,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
+                      children:[
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.end,
-                          children: const [
+                          children: [
                             Text('Opening Hours:', style: TextStyle(fontSize: 14, color: Colors.black)),
                             SizedBox(height: 4),
                             Text('Mon-Fri: 9am - 4pm', style: TextStyle(fontSize: 14)),
