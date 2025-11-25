@@ -1,12 +1,42 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:union_shop/main.dart';
+import 'package:union_shop/services/data_service.dart';
 
 void main() {
   group('Home Page Tests', () {
+    setUp(() {
+      // Mock the asset bundle
+      TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
+          .setMockMethodCallHandler(
+        const MethodChannel('flutter/assets'),
+        (MethodCall methodCall) async {
+          if (methodCall.method == 'loadString') {
+            if (methodCall.arguments == 'assets/data/products.json') {
+              return '''{
+  "collections": [],
+  "products": []
+}''';
+            }
+          }
+          return null;
+        },
+      );
+    });
+
+    tearDown(() {
+      TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
+          .setMockMethodCallHandler(
+        const MethodChannel('flutter/assets'),
+        null,
+      );
+      DataService.resetInstance();
+    });
+
     testWidgets('should display home page with basic elements', (tester) async {
       await tester.pumpWidget(const UnionShopApp());
-      await tester.pump();
+      await tester.pumpAndSettle();
 
       // Check that basic UI elements are present
       expect(
@@ -21,7 +51,7 @@ void main() {
 
     testWidgets('should display product cards', (tester) async {
       await tester.pumpWidget(const UnionShopApp());
-      await tester.pump();
+      await tester.pumpAndSettle();
 
       // Check that product cards are displayed
       expect(find.text('Placeholder Product 1'), findsOneWidget);
@@ -38,7 +68,7 @@ void main() {
 
     testWidgets('should display header icons', (tester) async {
       await tester.pumpWidget(const UnionShopApp());
-      await tester.pump();
+      await tester.pumpAndSettle();
 
       // Check that header icons are present (desktop layout used in tests)
       expect(find.byIcon(Icons.search), findsOneWidget);
@@ -48,12 +78,37 @@ void main() {
 
     testWidgets('should display footer', (tester) async {
       await tester.pumpWidget(const UnionShopApp());
-      await tester.pump();
+      await tester.pumpAndSettle();
 
       // Check that footer is present
       expect(
           find.text('© 2024 Union Shop. All rights reserved.'), findsOneWidget);
       expect(find.text('Privacy Policy'), findsOneWidget);
+    });
+
+    testWidgets('browse products button should be tappable', (tester) async {
+      await tester.pumpWidget(const UnionShopApp());
+      await tester.pumpAndSettle();
+
+      final browseButton = find.text('BROWSE PRODUCTS');
+      expect(browseButton, findsOneWidget);
+
+      // Tap the button (would normally navigate)
+      await tester.tap(browseButton);
+      await tester.pumpAndSettle();
+    });
+
+    testWidgets('product cards should be tappable', (tester) async {
+      await tester.pumpWidget(const UnionShopApp());
+      await tester.pumpAndSettle();
+
+      // Find the first product card
+      final firstProductCard = find.byType(GestureDetector).first;
+      expect(firstProductCard, findsOneWidget);
+
+      // Tap the card (would normally navigate to product page)
+      await tester.tap(firstProductCard);
+      await tester.pumpAndSettle();
     });
   });
 }
