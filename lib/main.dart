@@ -3,7 +3,7 @@ import 'package:union_shop/product_page.dart';
 import 'package:union_shop/pages/aboutus.dart';
 import 'package:union_shop/pages/not_found.dart';
 import 'package:union_shop/pages/collections.dart';
-import 'package:union_shop/pages/collections.dart';
+import 'package:union_shop/pages/auth.dart';
 import 'package:union_shop/widgets/header.dart';
 import 'package:union_shop/widgets/footer.dart';
 
@@ -29,6 +29,7 @@ class UnionShopApp extends StatelessWidget {
       routes: {
         '/product': (context) => const ProductPage(),
         '/collections': (context) => const CollectionsPage(),
+        '/auth': (context) => const AuthPage(),
         '/about': (context) => const Aboutus(),
       },
       // Handle unknown routes with a 404 page
