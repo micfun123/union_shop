@@ -12,15 +12,16 @@ class AuthPage extends StatelessWidget {
         child: Column(
           children: [
             const AppHeader(),
-
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 48),
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 20.0, vertical: 48),
               child: Center(
                 child: ConstrainedBox(
                   constraints: const BoxConstraints(maxWidth: 600),
                   child: Card(
                     elevation: 2,
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8)),
                     child: Padding(
                       padding: const EdgeInsets.all(24.0),
                       child: DefaultTabController(
@@ -57,7 +58,6 @@ class AuthPage extends StatelessWidget {
                 ),
               ),
             ),
-
             const AppFooter(),
           ],
         ),
@@ -86,24 +86,29 @@ class _AuthLoginFormState extends State<_AuthLoginForm> {
         children: [
           const SizedBox(height: 8),
           TextFormField(
-            decoration: const InputDecoration(labelText: 'Email', border: OutlineInputBorder()),
+            decoration: const InputDecoration(
+                labelText: 'Email', border: OutlineInputBorder()),
             keyboardType: TextInputType.emailAddress,
             onSaved: (v) => _email = v ?? '',
           ),
           const SizedBox(height: 12),
           TextFormField(
-            decoration: const InputDecoration(labelText: 'Password', border: OutlineInputBorder()),
+            decoration: const InputDecoration(
+                labelText: 'Password', border: OutlineInputBorder()),
             obscureText: true,
             onSaved: (v) => _password = v ?? '',
           ),
           const SizedBox(height: 12),
           Row(
             children: [
-              Checkbox(value: _remember, onChanged: (v) => setState(() => _remember = v ?? false)),
+              Checkbox(
+                  value: _remember,
+                  onChanged: (v) => setState(() => _remember = v ?? false)),
               const SizedBox(width: 8),
               const Text('Remember me'),
               const Spacer(),
-              TextButton(onPressed: () {}, child: const Text('Forgot password?')),
+              TextButton(
+                  onPressed: () {}, child: const Text('Forgot password?')),
             ],
           ),
           const SizedBox(height: 12),
@@ -111,16 +116,22 @@ class _AuthLoginFormState extends State<_AuthLoginForm> {
             onPressed: () {
               _formKey.currentState?.save();
               // no-op: UI-only
-              ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Login submitted (UI only)')));
+              ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(content: Text('Login submitted (UI only)')));
             },
-            style: ElevatedButton.styleFrom(backgroundColor: const Color(0xFF4d2963)),
+            style: ElevatedButton.styleFrom(
+                backgroundColor: const Color(0xFF4d2963)),
             child: const Padding(
               padding: EdgeInsets.symmetric(vertical: 14.0),
               child: Text('Sign In'),
             ),
           ),
           const SizedBox(height: 12),
-          Center(child: TextButton(onPressed: () => DefaultTabController.of(context)?.animateTo(1), child: const Text('Don\'t have an account? Sign up'))),
+          Center(
+              child: TextButton(
+                  onPressed: () =>
+                      DefaultTabController.of(context)?.animateTo(1),
+                  child: const Text('Don\'t have an account? Sign up'))),
         ],
       ),
     );
@@ -147,24 +158,28 @@ class _AuthSignupFormState extends State<_AuthSignupForm> {
         children: [
           const SizedBox(height: 8),
           TextFormField(
-            decoration: const InputDecoration(labelText: 'Full name', border: OutlineInputBorder()),
+            decoration: const InputDecoration(
+                labelText: 'Full name', border: OutlineInputBorder()),
             onSaved: (v) => _name = v ?? '',
           ),
           const SizedBox(height: 12),
           TextFormField(
-            decoration: const InputDecoration(labelText: 'Email', border: OutlineInputBorder()),
+            decoration: const InputDecoration(
+                labelText: 'Email', border: OutlineInputBorder()),
             keyboardType: TextInputType.emailAddress,
             onSaved: (v) => _email = v ?? '',
           ),
           const SizedBox(height: 12),
           TextFormField(
-            decoration: const InputDecoration(labelText: 'Password', border: OutlineInputBorder()),
+            decoration: const InputDecoration(
+                labelText: 'Password', border: OutlineInputBorder()),
             obscureText: true,
             onSaved: (v) => _password = v ?? '',
           ),
           const SizedBox(height: 12),
           TextFormField(
-            decoration: const InputDecoration(labelText: 'Confirm password', border: OutlineInputBorder()),
+            decoration: const InputDecoration(
+                labelText: 'Confirm password', border: OutlineInputBorder()),
             obscureText: true,
           ),
           const SizedBox(height: 12),
@@ -172,9 +187,11 @@ class _AuthSignupFormState extends State<_AuthSignupForm> {
             onPressed: () {
               _formKey.currentState?.save();
               // no-op: UI-only
-              ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Sign up submitted (UI only)')));
+              ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(content: Text('Sign up submitted (UI only)')));
             },
-            style: ElevatedButton.styleFrom(backgroundColor: const Color(0xFF4d2963)),
+            style: ElevatedButton.styleFrom(
+                backgroundColor: const Color(0xFF4d2963)),
             child: const Padding(
               padding: EdgeInsets.symmetric(vertical: 14.0),
               child: Text('Create account'),

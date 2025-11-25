@@ -13,7 +13,8 @@ class NotFoundPage extends StatelessWidget {
           children: [
             const AppHeader(),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 48),
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 24.0, vertical: 48),
               child: ConstrainedBox(
                 constraints: const BoxConstraints(maxWidth: 900),
                 child: Column(
@@ -23,7 +24,8 @@ class NotFoundPage extends StatelessWidget {
                     const SizedBox(height: 24),
                     const Text(
                       '404 — Page Not Found',
-                      style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
+                      style:
+                          TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
                     ),
                     const SizedBox(height: 12),
                     const Text(
@@ -37,7 +39,8 @@ class NotFoundPage extends StatelessWidget {
                       children: [
                         ElevatedButton(
                           onPressed: () {
-                            Navigator.pushNamedAndRemoveUntil(context, '/', (route) => false);
+                            Navigator.pushNamedAndRemoveUntil(
+                                context, '/', (route) => false);
                           },
                           style: ElevatedButton.styleFrom(
                             backgroundColor: const Color(0xFF4d2963),

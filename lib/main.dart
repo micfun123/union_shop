@@ -35,7 +35,8 @@ class UnionShopApp extends StatelessWidget {
         '/about': (context) => const Aboutus(),
       },
       // Handle unknown routes with a 404 page
-      onUnknownRoute: (settings) => MaterialPageRoute(builder: (_) => const NotFoundPage()),
+      onUnknownRoute: (settings) =>
+          MaterialPageRoute(builder: (_) => const NotFoundPage()),
     );
   }
 }
@@ -62,7 +63,7 @@ class HomeScreen extends StatelessWidget {
         child: Column(
           children: [
             const AppHeader(),
-            
+
             // Hero Section
             SizedBox(
               height: 400,
@@ -193,7 +194,6 @@ class HomeScreen extends StatelessWidget {
 
             // Footer
             const AppFooter(),
-            
           ],
         ),
       ),
