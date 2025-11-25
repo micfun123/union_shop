@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:union_shop/main.dart';
+import 'package:union_shop/router.dart' as router;
 import 'package:union_shop/services/data_service.dart';
 
 void main() {
@@ -102,12 +103,21 @@ void main() {
       await tester.pumpWidget(const UnionShopApp());
       await tester.pumpAndSettle();
 
-      // Find the first product card
-      final firstProductCard = find.byType(GestureDetector).first;
-      expect(firstProductCard, findsOneWidget);
+      // Locate a product by its title, then tap the enclosing GestureDetector
+      final titleFinder = find.text('Placeholder Product 1');
+      expect(titleFinder, findsOneWidget);
+
+      final cardGesture = find
+          .ancestor(
+            of: titleFinder,
+            matching: find.byType(GestureDetector),
+          )
+          .first;
+
+      expect(cardGesture, findsOneWidget);
 
       // Tap the card (would normally navigate to product page)
-      await tester.tap(firstProductCard);
+      await tester.tap(cardGesture);
       await tester.pumpAndSettle();
     });
   });
