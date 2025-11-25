@@ -1,10 +1,11 @@
 # Union Shop - Project Criteria
 
 ## Progress Summary
-**Completed**: 6/19 criteria (31.5%)
-- Basic: 5/9 items
-- Intermediate: 1/7 items
-- Advanced: 0/3 items
+**Completed**: 7/19 criteria (36.8%)
+- Basic: 7/9 items (28%)
+- Intermediate: 1/7 items (3%)
+- Advanced: 0/3 items (0%)
+- **Total Progress**: 31% of project complete
 
 ---
 
@@ -87,16 +88,17 @@
   - [ ] At least 4 sale products displayed
 
 ### Authentication UI
-- [ ] Login/signup page with the relevant forms (widgets do not have to function) - **3%**
+- [x] Login/signup page with the relevant forms (widgets do not have to function) - **3%** ✅
 - Reference: Sign In
 - **Tests:**
-  - [ ] Login page accessible via route
-  - [ ] Login form includes email field
-  - [ ] Login form includes password field
-  - [ ] Login form includes submit button
-  - [ ] Signup form exists (separate or toggle)
-  - [ ] "Forgot Password" link exists
-  - [ ] Forms are styled consistently
+  - [x] Login page accessible via `/auth` route
+  - [x] Login form includes email field
+  - [x] Login form includes password field
+  - [x] Login form includes submit button
+  - [x] Signup form exists (separate or toggle)
+  - [x] "Forgot Password" link exists
+  - [x] Forms are styled consistently
+  - [x] Account icon in header navigates to auth page
 
 ### Static Navbar
 - [x] Top navigation bar on desktop view (the links do not have to work, it should collapse to a menu button on mobile) - **5%** ✅
@@ -186,6 +188,7 @@
   - [x] Back button works correctly
   - [x] Breadcrumbs or path indicators exist
   - [x] 404 page handles invalid routes
+  - [x] 404 page includes helpful navigation options
   - [ ] Deep linking works (e.g., `/product/123`)
   - [ ] Navigation state persists correctly
 
