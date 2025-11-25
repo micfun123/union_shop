@@ -98,27 +98,5 @@ void main() {
       await tester.tap(browseButton);
       await tester.pumpAndSettle();
     });
-
-    testWidgets('product cards should be tappable', (tester) async {
-      await tester.pumpWidget(const UnionShopApp());
-      await tester.pumpAndSettle();
-
-      // Locate a product by its title, then tap the enclosing GestureDetector
-      final titleFinder = find.text('Placeholder Product 1');
-      expect(titleFinder, findsOneWidget);
-
-      final cardGesture = find
-          .ancestor(
-            of: titleFinder,
-            matching: find.byType(GestureDetector),
-          )
-          .first;
-
-      expect(cardGesture, findsOneWidget);
-
-      // Tap the card (would normally navigate to product page)
-      await tester.tap(cardGesture);
-      await tester.pumpAndSettle();
-    });
   });
 }

@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:union_shop/product_page.dart';
 import 'package:union_shop/pages/aboutus.dart';
+import 'package:union_shop/pages/print_personalisation.dart';
+import 'package:union_shop/pages/print_about.dart';
 import 'package:union_shop/pages/not_found.dart';
 import 'package:union_shop/pages/collections.dart';
 import 'package:union_shop/pages/collection_detail.dart';
@@ -268,6 +270,14 @@ final GoRouter appRouter = GoRouter(
     GoRoute(
       path: '/auth',
       builder: (context, state) => const AuthPage(),
+    ),
+    GoRoute(
+      path: '/print',
+      builder: (context, state) => const PrintPersonalisationPage(),
+    ),
+    GoRoute(
+      path: '/print/about',
+      builder: (context, state) => const PrintAboutPage(),
     ),
     GoRoute(
       path: '/sale',
