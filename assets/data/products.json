@@ -1,0 +1,104 @@
+{
+  "collections": [
+    {
+      "id": "study-essentials",
+      "name": "Study Essentials",
+      "description": "Everything you need for your studies",
+      "imageUrl": "https://shop.upsu.net/cdn/shop/files/PortsmouthCityPostcard2_1024x1024@2x.jpg?v=1752232561"
+    },
+    {
+      "id": "university-apparel",
+      "name": "University Apparel",
+      "description": "Show your Portsmouth pride",
+      "imageUrl": "https://shop.upsu.net/cdn/shop/files/PortsmouthCityMagnet1_1024x1024@2x.jpg?v=1752230282"
+    },
+    {
+      "id": "accessories",
+      "name": "Accessories",
+      "description": "Essential accessories for student life",
+      "imageUrl": "https://shop.upsu.net/cdn/shop/files/PortsmouthCityPostcard2_1024x1024@2x.jpg?v=1752232561"
+    }
+  ],
+  "products": [
+    {
+      "id": "notebook-a",
+      "title": "Notebook A",
+      "price": "5.00",
+      "currency": "£",
+      "collectionId": "study-essentials",
+      "imageUrl": "https://shop.upsu.net/cdn/shop/files/PortsmouthCityMagnet1_1024x1024@2x.jpg?v=1752230282",
+      "description": "High-quality notebook for all your study needs",
+      "inStock": true
+    },
+    {
+      "id": "pen-set",
+      "title": "Pen Set",
+      "price": "3.50",
+      "currency": "£",
+      "collectionId": "study-essentials",
+      "imageUrl": "https://shop.upsu.net/cdn/shop/files/PortsmouthCityMagnet1_1024x1024@2x.jpg?v=1752230282",
+      "description": "Set of premium ballpoint pens",
+      "inStock": true
+    },
+    {
+      "id": "sticky-notes",
+      "title": "Sticky Notes",
+      "price": "2.00",
+      "currency": "£",
+      "collectionId": "study-essentials",
+      "imageUrl": "https://shop.upsu.net/cdn/shop/files/PortsmouthCityMagnet1_1024x1024@2x.jpg?v=1752230282",
+      "description": "Colorful sticky notes for organization",
+      "inStock": true
+    },
+    {
+      "id": "ruler",
+      "title": "Ruler",
+      "price": "1.20",
+      "currency": "£",
+      "collectionId": "study-essentials",
+      "imageUrl": "https://shop.upsu.net/cdn/shop/files/PortsmouthCityMagnet1_1024x1024@2x.jpg?v=1752230282",
+      "description": "30cm transparent ruler",
+      "inStock": true
+    },
+    {
+      "id": "folder-pack",
+      "title": "Folder Pack",
+      "price": "4.50",
+      "currency": "£",
+      "collectionId": "study-essentials",
+      "imageUrl": "https://shop.upsu.net/cdn/shop/files/PortsmouthCityMagnet1_1024x1024@2x.jpg?v=1752230282",
+      "description": "Pack of 5 document folders",
+      "inStock": true
+    },
+    {
+      "id": "highlighter",
+      "title": "Highlighter",
+      "price": "1.80",
+      "currency": "£",
+      "collectionId": "study-essentials",
+      "imageUrl": "https://shop.upsu.net/cdn/shop/files/PortsmouthCityMagnet1_1024x1024@2x.jpg?v=1752230282",
+      "description": "Yellow highlighter pen",
+      "inStock": true
+    },
+    {
+      "id": "portsmouth-tshirt",
+      "title": "Portsmouth University T-Shirt",
+      "price": "15.00",
+      "currency": "£",
+      "collectionId": "university-apparel",
+      "imageUrl": "https://shop.upsu.net/cdn/shop/files/PortsmouthCityMagnet1_1024x1024@2x.jpg?v=1752230282",
+      "description": "Official Portsmouth University branded t-shirt",
+      "inStock": true
+    },
+    {
+      "id": "portsmouth-hoodie",
+      "title": "Portsmouth University Hoodie",
+      "price": "35.00",
+      "currency": "£",
+      "collectionId": "university-apparel",
+      "imageUrl": "https://shop.upsu.net/cdn/shop/files/PortsmouthCityMagnet1_1024x1024@2x.jpg?v=1752230282",
+      "description": "Comfortable hoodie with university logo",
+      "inStock": true
+    }
+  ]
+}
