@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class AppHeader extends StatelessWidget {
   const AppHeader({super.key});
@@ -40,19 +41,20 @@ class AppHeader extends StatelessWidget {
 
       switch (selected) {
         case 'home':
-          Navigator.pushNamedAndRemoveUntil(context, '/', (r) => false);
+          context.go('/');
           break;
         case 'collections':
-          Navigator.pushNamed(context, '/collections');
+          context.go('/collections');
           break;
         case 'print':
-          Navigator.pushNamed(context, '/product');
+          // For now, just navigate to collections
+          context.go('/collections');
           break;
         case 'sale':
-          Navigator.pushNamed(context, '/sale');
+          context.go('/sale');
           break;
         case 'about':
-          Navigator.pushNamed(context, '/about');
+          context.go('/about');
           break;
       }
     }
@@ -88,8 +90,7 @@ class AppHeader extends StatelessWidget {
                   // Logo (left)
                   GestureDetector(
                     onTap: () {
-                      Navigator.pushNamedAndRemoveUntil(
-                          context, '/', (route) => false);
+                      context.go('/');
                     },
                     child: Image.network(
                       'https://shop.upsu.net/cdn/shop/files/upsu_300x300.png?v=1614735854',
@@ -122,45 +123,32 @@ class AppHeader extends StatelessWidget {
                           children: [
                             TextButton(
                               onPressed: () {
-                                Navigator.pushNamedAndRemoveUntil(
-                                    context, '/', (r) => false);
+                                context.go('/');
                               },
                               child: const Text('Home'),
                             ),
-                            // Shop button becomes a dropdown listing collections
-                            PopupMenuButton<String>(
-                              onSelected: (value) {
-                                // Navigate to collections and pass the selected collection name
-                                Navigator.pushNamed(context, '/collections',
-                                    arguments: value);
+                            // Shop button navigates to collections
+                            TextButton(
+                              onPressed: () {
+                                context.go('/collections');
                               },
-                              itemBuilder: (ctx) => const [
-                                PopupMenuItem(
-                                    value: 'Study Essentials',
-                                    child: Text('Study Essentials')),
-                                PopupMenuItem(
-                                    value: 'Apparel', child: Text('Apparel')),
-                                PopupMenuItem(
-                                    value: 'Gifts & Home',
-                                    child: Text('Gifts & Home')),
-                              ],
                               child: const Text('Shop'),
                             ),
                             TextButton(
                               onPressed: () {
-                                Navigator.pushNamed(context, '/product');
+                                context.go('/collections');
                               },
                               child: const Text('The Print Shop'),
                             ),
                             TextButton(
                               onPressed: () {
-                                Navigator.pushNamed(context, '/sale');
+                                context.go('/sale');
                               },
                               child: const Text('SALE!'),
                             ),
                             TextButton(
                               onPressed: () {
-                                Navigator.pushNamed(context, '/about');
+                                context.go('/about');
                               },
                               child: const Text('About'),
                             ),
@@ -187,7 +175,7 @@ class AppHeader extends StatelessWidget {
                         icon: const Icon(Icons.person_outline,
                             size: 20, color: Colors.grey),
                         onPressed: () {
-                          Navigator.pushNamed(context, '/auth');
+                          context.go('/auth');
                         },
                         padding: const EdgeInsets.all(8),
                         constraints:

@@ -1,37 +1,24 @@
 import 'package:flutter/material.dart';
-import 'package:union_shop/router.dart';
+import 'package:go_router/go_router.dart';
+import 'package:union_shop/product_page.dart';
+import 'package:union_shop/pages/aboutus.dart';
+import 'package:union_shop/pages/not_found.dart';
+import 'package:union_shop/pages/collections.dart';
+import 'package:union_shop/pages/collection_detail.dart';
+import 'package:union_shop/pages/auth.dart';
+import 'package:union_shop/pages/sale.dart';
 import 'package:union_shop/widgets/header.dart';
 import 'package:union_shop/widgets/footer.dart';
-
-void main() {
-  runApp(const UnionShopApp());
-}
-
-class UnionShopApp extends StatelessWidget {
-  const UnionShopApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp.router(
-      title: 'Union Shop',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF4d2963)),
-      ),
-      routerConfig: appRouter,
-    );
-  }
-}
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
   void navigateToHome(BuildContext context) {
-    Navigator.pushNamedAndRemoveUntil(context, '/', (route) => false);
+    context.go('/');
   }
 
-  void navigateToProduct(BuildContext context) {
-    Navigator.pushNamed(context, '/product');
+  void navigateToProduct(BuildContext context, String productId) {
+    context.go('/product/$productId');
   }
 
   void placeholderCallbackForButtons() {
@@ -52,8 +39,7 @@ class HomeScreen extends StatelessWidget {
               width: double.infinity,
               child: Stack(
                 children: [
-                  // Background image (use Image.network with errorBuilder to avoid
-                  // unhandled network exceptions during tests)
+                  // Background image
                   Positioned.fill(
                     child: Stack(
                       children: [
@@ -107,7 +93,7 @@ class HomeScreen extends StatelessWidget {
                         ),
                         const SizedBox(height: 32),
                         ElevatedButton(
-                          onPressed: placeholderCallbackForButtons,
+                          onPressed: () => context.go('/collections'),
                           style: ElevatedButton.styleFrom(
                             backgroundColor: const Color(0xFF4d2963),
                             foregroundColor: Colors.white,
@@ -152,24 +138,28 @@ class HomeScreen extends StatelessWidget {
                       mainAxisSpacing: 48,
                       children: const [
                         ProductCard(
+                          id: 'notebook-a',
                           title: 'Placeholder Product 1',
                           price: '£10.00',
                           imageUrl:
                               'https://shop.upsu.net/cdn/shop/files/PortsmouthCityMagnet1_1024x1024@2x.jpg?v=1752230282',
                         ),
                         ProductCard(
+                          id: 'pen-set',
                           title: 'Placeholder Product 2',
                           price: '£15.00',
                           imageUrl:
                               'https://shop.upsu.net/cdn/shop/files/PortsmouthCityMagnet1_1024x1024@2x.jpg?v=1752230282',
                         ),
                         ProductCard(
+                          id: 'sticky-notes',
                           title: 'Placeholder Product 3',
                           price: '£20.00',
                           imageUrl:
                               'https://shop.upsu.net/cdn/shop/files/PortsmouthCityMagnet1_1024x1024@2x.jpg?v=1752230282',
                         ),
                         ProductCard(
+                          id: 'ruler',
                           title: 'Placeholder Product 4',
                           price: '£25.00',
                           imageUrl:
@@ -192,12 +182,14 @@ class HomeScreen extends StatelessWidget {
 }
 
 class ProductCard extends StatelessWidget {
+  final String id;
   final String title;
   final String price;
   final String imageUrl;
 
   const ProductCard({
     super.key,
+    required this.id,
     required this.title,
     required this.price,
     required this.imageUrl,
@@ -207,7 +199,7 @@ class ProductCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.pushNamed(context, '/product');
+        context.go('/product/$id');
       },
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -247,3 +239,44 @@ class ProductCard extends StatelessWidget {
     );
   }
 }
+
+final GoRouter appRouter = GoRouter(
+  initialLocation: '/',
+  routes: [
+    GoRoute(
+      path: '/',
+      builder: (context, state) => const HomeScreen(),
+    ),
+    GoRoute(
+      path: '/product/:productId',
+      builder: (context, state) {
+        final productId = state.pathParameters['productId']!;
+        return ProductPage(productId: productId);
+      },
+    ),
+    GoRoute(
+      path: '/collections',
+      builder: (context, state) => const CollectionsPage(),
+    ),
+    GoRoute(
+      path: '/collections/:collectionId',
+      builder: (context, state) {
+        final collectionId = state.pathParameters['collectionId']!;
+        return CollectionDetailPage(collectionId: collectionId);
+      },
+    ),
+    GoRoute(
+      path: '/auth',
+      builder: (context, state) => const AuthPage(),
+    ),
+    GoRoute(
+      path: '/sale',
+      builder: (context, state) => const SalePage(),
+    ),
+    GoRoute(
+      path: '/about',
+      builder: (context, state) => const Aboutus(),
+    ),
+  ],
+  errorBuilder: (context, state) => const NotFoundPage(),
+);
