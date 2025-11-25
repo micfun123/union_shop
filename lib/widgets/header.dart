@@ -46,6 +46,8 @@ class AppHeader extends StatelessWidget {
           Navigator.pushNamed(context, '/product'); 
           break;
         case 'sale':
+          Navigator.pushNamed(context, '/sale');
+          break;
         case 'about':
           Navigator.pushNamed(context, '/about');
           break;
@@ -139,7 +141,9 @@ class AppHeader extends StatelessWidget {
                               child: const Text('The Print Shop'),
                             ),
                             TextButton(
-                              onPressed: placeholderCallbackForButtons,
+                              onPressed: () {
+                                Navigator.pushNamed(context, '/sale');
+                              },
                               child: const Text('SALE!'),
                             ),
                             TextButton(

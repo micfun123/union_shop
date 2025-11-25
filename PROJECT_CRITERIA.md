@@ -1,11 +1,11 @@
 # Union Shop - Project Criteria
 
 ## Progress Summary
-**Completed**: 7/19 criteria (36.8%)
-- Basic: 7/9 items (28%)
+**Completed**: 8/19 criteria (42.1%)
+- Basic: 8/9 items (32%)
 - Intermediate: 1/7 items (3%)
 - Advanced: 0/3 items (0%)
-- **Total Progress**: 31% of project complete
+- **Total Progress**: 35% of project complete
 
 ---
 
@@ -77,15 +77,17 @@
   - [ ] Related products section exists
 
 ### Sale Collection
-- [ ] Page showing sale products with discounted prices and promotional messaging (hardcoded data acceptable, widgets do not have to function) - **4%**
+- [x] Page showing sale products with discounted prices and promotional messaging (hardcoded data acceptable, widgets do not have to function) - **4%** ✅
 - Reference: Sale Items
 - **Tests:**
-  - [ ] Sale page accessible via route
-  - [ ] Page displays promotional banner
-  - [ ] Products show original price (strikethrough)
-  - [ ] Products show discounted price
-  - [ ] Discount percentage is visible
-  - [ ] At least 4 sale products displayed
+  - [x] Sale page accessible via `/sale` route
+  - [x] Page displays promotional banner with "MASSIVE SALE" messaging
+  - [x] Products show original price (strikethrough)
+  - [x] Products show discounted price in red
+  - [x] Discount percentage is visible on product cards
+  - [x] 6 sale products displayed
+  - [x] Header SALE button navigates to sale page
+  - [x] Mobile menu includes sale option
 
 ### Authentication UI
 - [x] Login/signup page with the relevant forms (widgets do not have to function) - **3%** ✅
