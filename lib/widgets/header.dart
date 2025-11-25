@@ -47,8 +47,7 @@ class AppHeader extends StatelessWidget {
           context.go('/collections');
           break;
         case 'print':
-          // For now, just navigate to collections
-          context.go('/collections');
+          context.go('/print');
           break;
         case 'sale':
           context.go('/sale');
@@ -136,7 +135,7 @@ class AppHeader extends StatelessWidget {
                             ),
                             TextButton(
                               onPressed: () {
-                                context.go('/collections');
+                                context.go('/print');
                               },
                               child: const Text('The Print Shop'),
                             ),
