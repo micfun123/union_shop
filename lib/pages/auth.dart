@@ -130,7 +130,7 @@ class _AuthLoginFormState extends State<_AuthLoginForm> {
           Center(
               child: TextButton(
                   onPressed: () =>
-                      DefaultTabController.of(context)?.animateTo(1),
+                      DefaultTabController.of(context).animateTo(1),
                   child: const Text('Don\'t have an account? Sign up'))),
         ],
       ),
