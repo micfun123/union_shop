@@ -1,182 +1,189 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:union_shop/widgets/header.dart';
 import 'package:union_shop/widgets/footer.dart';
+import 'package:union_shop/models/product.dart';
+import 'package:union_shop/services/data_service.dart';
 
-class SalePage extends StatelessWidget {
+class SalePage extends StatefulWidget {
   const SalePage({super.key});
 
-  static const List<_SaleProduct> _saleProducts = [
-    _SaleProduct(
-      title: 'Portsmouth City Magnet',
-      originalPrice: '£5.99',
-      salePrice: '£3.99',
-      discount: '33% OFF',
-      imageUrl: 'https://shop.upsu.net/cdn/shop/files/PortsmouthCityMagnet1_1024x1024@2x.jpg?v=1752230282',
-    ),
-    _SaleProduct(
-      title: 'University Notebook Set',
-      originalPrice: '£12.99',
-      salePrice: '£8.99',
-      discount: '31% OFF',
-      imageUrl: 'https://shop.upsu.net/cdn/shop/files/PortsmouthCityMagnet1_1024x1024@2x.jpg?v=1752230282',
-    ),
-    _SaleProduct(
-      title: 'UPSU Hoodie',
-      originalPrice: '£34.99',
-      salePrice: '£24.99',
-      discount: '29% OFF',
-      imageUrl: 'https://shop.upsu.net/cdn/shop/files/upsu_300x300.png?v=1614735854',
-    ),
-    _SaleProduct(
-      title: 'Portsmouth Postcard Pack',
-      originalPrice: '£4.99',
-      salePrice: '£2.99',
-      discount: '40% OFF',
-      imageUrl: 'https://shop.upsu.net/cdn/shop/files/PortsmouthCityPostcard2_1024x1024@2x.jpg?v=1752232561',
-    ),
-    _SaleProduct(
-      title: 'Student Essentials Bundle',
-      originalPrice: '£19.99',
-      salePrice: '£14.99',
-      discount: '25% OFF',
-      imageUrl: 'https://shop.upsu.net/cdn/shop/files/PortsmouthCityMagnet1_1024x1024@2x.jpg?v=1752230282',
-    ),
-    _SaleProduct(
-      title: 'University Mug',
-      originalPrice: '£8.99',
-      salePrice: '£5.99',
-      discount: '33% OFF',
-      imageUrl: 'https://shop.upsu.net/cdn/shop/files/upsu_300x300.png?v=1614735854',
-    ),
-  ];
+  @override
+  State<SalePage> createState() => _SalePageState();
+}
+
+class _SalePageState extends State<SalePage> {
+  List<Product> products = [];
+  bool isLoading = true;
+
+  @override
+  void initState() {
+    super.initState();
+    _loadProducts();
+  }
+
+  Future<void> _loadProducts() async {
+    try {
+      final allProducts = await DataService.instance.getProducts();
+      // Take first 6 products as "sale" items
+      setState(() {
+        products = allProducts.take(6).toList();
+        isLoading = false;
+      });
+    } catch (e) {
+      setState(() {
+        isLoading = false;
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            const AppHeader(),
-
-            // Promotional banner
-            Container(
-              width: double.infinity,
-              padding: const EdgeInsets.symmetric(vertical: 32, horizontal: 20),
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  colors: [
-                    const Color(0xFF4d2963),
-                    const Color(0xFF4d2963).withOpacity(0.8),
-                  ],
+      body: isLoading
+          ? const Column(
+              children: [
+                AppHeader(),
+                Expanded(
+                  child: Center(
+                    child: CircularProgressIndicator(),
+                  ),
                 ),
-              ),
-              child: Center(
-                child: Column(
-                  children: [
-                    const Icon(Icons.local_offer, size: 48, color: Colors.white),
-                    const SizedBox(height: 16),
-                    const Text(
-                      'MASSIVE SALE!',
-                      style: TextStyle(
-                        fontSize: 36,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                        letterSpacing: 2,
-                      ),
-                    ),
-                    const SizedBox(height: 8),
-                    const Text(
-                      'Save up to 40% on selected items',
-                      style: TextStyle(
-                        fontSize: 18,
-                        color: Colors.white,
-                      ),
-                    ),
-                    const SizedBox(height: 16),
-                    Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                      decoration: BoxDecoration(
-                        color: Colors.red,
-                        borderRadius: BorderRadius.circular(4),
-                      ),
-                      child: const Text(
-                        'LIMITED TIME ONLY',
-                        style: TextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
-                          letterSpacing: 1,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
+              ],
+            )
+          : SingleChildScrollView(
+              child: Column(
+                children: [
+                  const AppHeader(),
 
-            // Sale products section
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 32),
-              child: ConstrainedBox(
-                constraints: const BoxConstraints(maxWidth: 1100),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      children: [
-                        const Text(
-                          'Sale Items',
-                          style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
-                        ),
-                        const SizedBox(width: 12),
-                        Container(
-                          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-                          decoration: BoxDecoration(
-                            color: Colors.red,
-                            borderRadius: BorderRadius.circular(4),
-                          ),
-                          child: Text(
-                            '${_saleProducts.length} items',
-                            style: const TextStyle(
-                              fontSize: 12,
-                              color: Colors.white,
+                  // Promotional banner
+                  Container(
+                    width: double.infinity,
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 32, horizontal: 20),
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        colors: [
+                          const Color(0xFF4d2963),
+                          const Color(0xFF4d2963).withOpacity(0.8),
+                        ],
+                      ),
+                    ),
+                    child: Center(
+                      child: Column(
+                        children: [
+                          const Icon(Icons.local_offer,
+                              size: 48, color: Colors.white),
+                          const SizedBox(height: 16),
+                          const Text(
+                            'MASSIVE SALE!',
+                            style: TextStyle(
+                              fontSize: 36,
                               fontWeight: FontWeight.bold,
+                              color: Colors.white,
+                              letterSpacing: 2,
                             ),
                           ),
-                        ),
-                      ],
+                          const SizedBox(height: 8),
+                          const Text(
+                            'Save up to 40% on selected items',
+                            style: TextStyle(
+                              fontSize: 18,
+                              color: Colors.white,
+                            ),
+                          ),
+                          const SizedBox(height: 16),
+                          Container(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 16, vertical: 8),
+                            decoration: BoxDecoration(
+                              color: Colors.red,
+                              borderRadius: BorderRadius.circular(4),
+                            ),
+                            child: const Text(
+                              'LIMITED TIME ONLY',
+                              style: TextStyle(
+                                fontSize: 14,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white,
+                                letterSpacing: 1,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
-                    const SizedBox(height: 8),
-                    const Text(
-                      'Grab these deals while stocks last!',
-                      style: TextStyle(fontSize: 16, color: Colors.grey),
-                    ),
-                    const SizedBox(height: 24),
+                  ),
 
-                    // Products grid
-                    GridView.count(
-                      crossAxisCount: MediaQuery.of(context).size.width > 900
-                          ? 3
-                          : (MediaQuery.of(context).size.width > 600 ? 2 : 1),
-                      crossAxisSpacing: 16,
-                      mainAxisSpacing: 16,
-                      shrinkWrap: true,
-                      physics: const NeverScrollableScrollPhysics(),
-                      childAspectRatio: 0.75,
-                      children: _saleProducts
-                          .map((p) => _SaleProductCard(product: p))
-                          .toList(),
+                  // Sale products section
+                  Padding(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 20.0, vertical: 32),
+                    child: ConstrainedBox(
+                      constraints: const BoxConstraints(maxWidth: 1100),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(
+                            children: [
+                              const Text(
+                                'Sale Items',
+                                style: TextStyle(
+                                    fontSize: 28, fontWeight: FontWeight.bold),
+                              ),
+                              const SizedBox(width: 12),
+                              Container(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 8, vertical: 4),
+                                decoration: BoxDecoration(
+                                  color: Colors.red,
+                                  borderRadius: BorderRadius.circular(4),
+                                ),
+                                child: Text(
+                                  '${products.length} items',
+                                  style: const TextStyle(
+                                    fontSize: 12,
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                          const SizedBox(height: 8),
+                          const Text(
+                            'Grab these deals while stocks last!',
+                            style: TextStyle(fontSize: 16, color: Colors.grey),
+                          ),
+                          const SizedBox(height: 24),
+
+                          // Products grid
+                          GridView.count(
+                            crossAxisCount:
+                                MediaQuery.of(context).size.width > 900
+                                    ? 3
+                                    : (MediaQuery.of(context).size.width > 600
+                                        ? 2
+                                        : 1),
+                            crossAxisSpacing: 16,
+                            mainAxisSpacing: 16,
+                            shrinkWrap: true,
+                            physics: const NeverScrollableScrollPhysics(),
+                            childAspectRatio: 0.75,
+                            children: products
+                                .map((p) => _SaleProductCard(product: p))
+                                .toList(),
+                          ),
+                          const SizedBox(height: 32),
+                        ],
+                      ),
                     ),
-                    const SizedBox(height: 32),
-                  ],
-                ),
+                  ),
+
+                  const AppFooter(),
+                ],
               ),
             ),
-
-            const AppFooter(),
-          ],
-        ),
-      ),
     );
   }
 }
@@ -198,34 +205,55 @@ class _SaleProduct {
 }
 
 class _SaleProductCard extends StatelessWidget {
-  final _SaleProduct product;
+  final Product product;
 
   const _SaleProductCard({required this.product});
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: () {
-        Navigator.pushNamed(context, '/product');
-      },
-      child: Card(
-        clipBehavior: Clip.antiAlias,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+    // Calculate mock discount percentage for display (can be made data-driven later)
+    final discount = '20% OFF';
+
+    return Card(
+      elevation: 2,
+      child: InkWell(
+        onTap: () {
+          context.go('/product/${product.id}');
+        },
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            // Product image with discount badge
             Expanded(
+              flex: 3,
               child: Stack(
-                fit: StackFit.expand,
                 children: [
-                  Image.network(
-                    product.imageUrl,
-                    fit: BoxFit.cover,
-                    errorBuilder: (context, e, st) =>
-                        Container(color: Colors.grey[300]),
-                  ),
-                  // Discount badge
+                  product.imageUrl != null
+                      ? Image.network(
+                          product.imageUrl!,
+                          fit: BoxFit.cover,
+                          width: double.infinity,
+                          errorBuilder: (context, error, stackTrace) =>
+                              Container(
+                            color: Colors.grey[200],
+                            child: Center(
+                              child: Icon(
+                                Icons.image,
+                                size: 80,
+                                color: Colors.grey[400],
+                              ),
+                            ),
+                          ),
+                        )
+                      : Container(
+                          color: Colors.grey[200],
+                          child: Center(
+                            child: Icon(
+                              Icons.image,
+                              size: 80,
+                              color: Colors.grey[400],
+                            ),
+                          ),
+                        ),
                   Positioned(
                     top: 8,
                     right: 8,
@@ -237,11 +265,11 @@ class _SaleProductCard extends StatelessWidget {
                         borderRadius: BorderRadius.circular(4),
                       ),
                       child: Text(
-                        product.discount,
+                        discount,
                         style: const TextStyle(
                           fontSize: 12,
-                          fontWeight: FontWeight.bold,
                           color: Colors.white,
+                          fontWeight: FontWeight.bold,
                         ),
                       ),
                     ),
@@ -249,45 +277,33 @@ class _SaleProductCard extends StatelessWidget {
                 ],
               ),
             ),
-
-            // Product info
-            Padding(
-              padding: const EdgeInsets.all(12.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    product.title,
-                    style: const TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
+            Expanded(
+              flex: 2,
+              child: Padding(
+                padding: const EdgeInsets.all(12),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      product.title,
+                      style: const TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                      ),
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
                     ),
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                  const SizedBox(height: 8),
-                  Row(
-                    children: [
-                      Text(
-                        product.originalPrice,
-                        style: const TextStyle(
-                          fontSize: 14,
-                          color: Colors.grey,
-                          decoration: TextDecoration.lineThrough,
-                        ),
+                    const SizedBox(height: 4),
+                    Text(
+                      product.formattedPrice,
+                      style: const TextStyle(
+                        fontSize: 16,
+                        color: Colors.red,
+                        fontWeight: FontWeight.bold,
                       ),
-                      const SizedBox(width: 8),
-                      Text(
-                        product.salePrice,
-                        style: const TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.red,
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
+                    ),
+                  ],
+                ),
               ),
             ),
           ],

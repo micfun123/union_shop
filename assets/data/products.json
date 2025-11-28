@@ -58,7 +58,8 @@
       "collectionId": "study-essentials",
       "imageUrl": "https://shop.upsu.net/cdn/shop/files/PortsmouthCityMagnet1_1024x1024@2x.jpg?v=1752230282",
       "description": "30cm transparent ruler",
-      "inStock": true
+      "inStock": true,
+      "discount": "0.10"
     },
     {
       "id": "folder-pack",
