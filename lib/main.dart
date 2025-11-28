@@ -71,10 +71,8 @@ class HomeScreen extends StatelessWidget {
                           ),
                         ),
                         Positioned.fill(
-                          child: Container(
-                            color: Colors.black.withOpacity(0.7),
-                          ),
-                        ),
+                            child: Container(
+                                color: Colors.black.withValues(alpha: 0.7))),
                       ],
                     ),
                   ),

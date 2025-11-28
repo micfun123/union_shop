@@ -48,32 +48,39 @@ class _ProductPageState extends State<ProductPage> {
   @override
   Widget build(BuildContext context) {
     if (isLoading) {
-      return Scaffold(
+      return const Scaffold(
         body: Column(
           children: [
-            const AppHeader(),
-            const Expanded(
+            AppHeader(),
+            Expanded(
               child: Center(
                 child: CircularProgressIndicator(),
               ),
             ),
-            const AppFooter(),
+            AppFooter(),
           ],
         ),
       );
     }
 
     if (product == null) {
-      return Scaffold(
+      return const Scaffold(
         body: Column(
           children: [
-            const AppHeader(),
-            const Expanded(
+            AppHeader(),
+            Expanded(
               child: Center(
-                child: Text('Product not found'),
+                child: Text(
+                  'Product not found',
+                  style: TextStyle(
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black,
+                  ),
+                ),
               ),
             ),
-            const AppFooter(),
+            AppFooter(),
           ],
         ),
       );
