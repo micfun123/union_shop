@@ -7,6 +7,14 @@ import 'package:union_shop/services/data_service.dart';
 
 void main() {
   group('Home Page Tests', () {
+    Future<void> settle(WidgetTester tester) async {
+      // Limited pump loop to avoid pumpAndSettle hanging on network/image futures
+      for (var i = 0; i < 30; i++) {
+        await tester.pump(const Duration(milliseconds: 50));
+      }
+      await tester.pump();
+    }
+
     setUp(() {
       // Mock the asset bundle
       TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
@@ -37,7 +45,7 @@ void main() {
 
     testWidgets('should display home page with basic elements', (tester) async {
       await tester.pumpWidget(const UnionShopApp());
-      await tester.pumpAndSettle();
+      await settle(tester);
 
       // Check that basic UI elements are present
       expect(
@@ -52,7 +60,7 @@ void main() {
 
     testWidgets('should display product cards', (tester) async {
       await tester.pumpWidget(const UnionShopApp());
-      await tester.pumpAndSettle();
+      await settle(tester);
 
       // Check that product cards are displayed
       expect(find.text('Placeholder Product 1'), findsOneWidget);
@@ -69,7 +77,7 @@ void main() {
 
     testWidgets('should display header icons', (tester) async {
       await tester.pumpWidget(const UnionShopApp());
-      await tester.pumpAndSettle();
+      await settle(tester);
 
       // Check that header icons are present (desktop layout used in tests)
       expect(find.byIcon(Icons.search), findsOneWidget);
@@ -79,7 +87,7 @@ void main() {
 
     testWidgets('should display footer', (tester) async {
       await tester.pumpWidget(const UnionShopApp());
-      await tester.pumpAndSettle();
+      await settle(tester);
 
       // Check that footer is present
       expect(
@@ -89,7 +97,7 @@ void main() {
 
     testWidgets('browse products button should be tappable', (tester) async {
       await tester.pumpWidget(const UnionShopApp());
-      await tester.pumpAndSettle();
+      await settle(tester);
 
       final browseButton = find.text('BROWSE PRODUCTS');
       expect(browseButton, findsOneWidget);

@@ -44,6 +44,13 @@ void main() {
       );
     });
 
+    Future<void> settle(WidgetTester tester) async {
+      for (var i = 0; i < 30; i++) {
+        await tester.pump(const Duration(milliseconds: 50));
+      }
+      await tester.pump();
+    }
+
     tearDown(() {
       TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
           .setMockMethodCallHandler(
@@ -61,7 +68,7 @@ void main() {
 
     testWidgets('should navigate to home page by default', (tester) async {
       await tester.pumpWidget(createTestApp());
-      await tester.pumpAndSettle();
+      await settle(tester);
 
       // Should be on home page
       expect(find.text('Placeholder Hero Title'), findsOneWidget);
