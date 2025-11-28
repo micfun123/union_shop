@@ -1,11 +1,11 @@
 # Union Shop - Project Criteria
 
 ## Progress Summary
-**Completed**: 12/19 criteria (63.2%)
+**Completed**: 13/19 criteria (68.4%)
 - Basic: 9/9 items (100%)
-- Intermediate: 3/7 items (42.9%)
+- Intermediate: 4/7 items (57.1%)
 - Advanced: 0/3 items (0%)
-- **Total Progress**: 63% of project complete
+- **Total Progress**: 69% of project complete
 
 ---
 
@@ -144,15 +144,15 @@
   - [ ] "Load More" or page navigation works
 
 ### Functional Product Pages
-- [ ] Product pages populated from data models or services with functioning dropdowns and counters (add to cart buttons do not have to work yet) - **6%**
+- [x] Product pages populated from data models or services with functioning dropdowns and counters (add to cart buttons do not have to work yet) - **6%** ✅
 - Reference: Product Example
 - **Tests:**
   - [x] Product loaded from data model using route parameter
-  - [ ] Size dropdown changes selected size
-  - [ ] Color dropdown changes selected color
-  - [ ] Quantity counter increments/decrements
-  - [ ] Quantity counter prevents values < 1
-  - [ ] Selected options display correctly
+  - [x] Size dropdown changes selected size
+  - [x] Color dropdown changes selected color
+  - [x] Quantity counter increments/decrements
+  - [x] Quantity counter prevents values < 1
+  - [x] Selected options display correctly
   - [ ] Product images can be changed/zoomed
   - [ ] Related products load dynamically
 

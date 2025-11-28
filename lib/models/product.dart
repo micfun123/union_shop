@@ -7,6 +7,8 @@ class Product {
   final String imageUrl;
   final String description;
   final bool inStock;
+  final List<String>? sizes;
+  final List<String>? colors;
 
   Product({
     required this.id,
@@ -17,6 +19,8 @@ class Product {
     required this.imageUrl,
     required this.description,
     required this.inStock,
+    this.sizes,
+    this.colors,
   });
 
   factory Product.fromJson(Map<String, dynamic> json) {
@@ -29,6 +33,8 @@ class Product {
       imageUrl: json['imageUrl'],
       description: json['description'],
       inStock: json['inStock'],
+      sizes: json['sizes'] != null ? List<String>.from(json['sizes']) : null,
+      colors: json['colors'] != null ? List<String>.from(json['colors']) : null,
     );
   }
 
@@ -42,6 +48,8 @@ class Product {
       'imageUrl': imageUrl,
       'description': description,
       'inStock': inStock,
+      if (sizes != null) 'sizes': sizes,
+      if (colors != null) 'colors': colors,
     };
   }
 

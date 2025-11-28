@@ -88,7 +88,20 @@
       "collectionId": "university-apparel",
       "imageUrl": "https://shop.upsu.net/cdn/shop/files/PortsmouthCityMagnet1_1024x1024@2x.jpg?v=1752230282",
       "description": "Official Portsmouth University branded t-shirt",
-      "inStock": true
+      "inStock": true,
+      "sizes": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL"
+      ],
+      "colors": [
+        "Navy",
+        "White",
+        "Grey"
+      ]
     },
     {
       "id": "portsmouth-hoodie",
@@ -98,7 +111,21 @@
       "collectionId": "university-apparel",
       "imageUrl": "https://shop.upsu.net/cdn/shop/files/PortsmouthCityMagnet1_1024x1024@2x.jpg?v=1752230282",
       "description": "Comfortable hoodie with university logo",
-      "inStock": true
+      "inStock": true,
+      "sizes": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL"
+      ],
+      "colors": [
+        "Navy",
+        "Black",
+        "Grey",
+        "Burgundy"
+      ]
     }
   ]
 }
