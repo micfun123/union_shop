@@ -11,6 +11,9 @@
 migrate_working_dir/
 .vscode
 
+
+icov.info
+
 # IntelliJ related
 *.iml
 *.ipr
