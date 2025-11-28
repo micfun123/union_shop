@@ -1,11 +1,11 @@
 # Union Shop - Project Criteria
 
 ## Progress Summary
-**Completed**: 8/19 criteria (42.1%)
-- Basic: 8/9 items (32%)
-- Intermediate: 1/7 items (3%)
+**Completed**: 12/19 criteria (63.2%)
+- Basic: 9/9 items (100%)
+- Intermediate: 3/7 items (42.9%)
 - Advanced: 0/3 items (0%)
-- **Total Progress**: 35% of project complete
+- **Total Progress**: 63% of project complete
 
 ---
 
@@ -15,11 +15,11 @@
 - [x] Homepage layout and widgets with static content (hardcoded data acceptable, mobile view focus) - **5%** ✅
 - Reference: Homepage
 - **Tests:**
-  - [ ] Homepage renders without errors
-  - [ ] Hero section displays with image and text
-  - [ ] Product grid displays 4 hardcoded products
-  - [ ] All product cards are clickable
-  - [ ] Layout is readable on mobile (< 600px width)
+  - [x] Homepage renders without errors
+  - [x] Hero section displays with image and text
+  - [x] Product grid displays 4 hardcoded products
+  - [x] All product cards are clickable
+  - [x] Layout is readable on mobile (< 600px width)
 
 ### About Us Page
 - [x] Static about us page with company information (separate page from homepage) - **5%** ✅
@@ -28,8 +28,8 @@
   - [x] About Us page accessible via `/about` route
   - [x] Page displays company information
   - [x] Page includes header and footer
-  - [ ] Content is formatted properly
-  - [ ] Navigation to/from page works
+  - [x] Content is formatted properly
+  - [x] Navigation to/from page works
 
 ### Footer
 - [x] Footer with dummy links and information present in at least one page - **4%** ✅
@@ -40,7 +40,7 @@
   - [x] Footer includes opening hours
   - [x] Footer includes policy links (Privacy, Terms)
   - [x] Footer is responsive (mobile & desktop layouts)
-  - [ ] Footer appears on all pages
+  - [x] Footer appears on all pages
 
 ### Collections Page (Dummy)
 - [x] Page displaying various collections of products (hardcoded data acceptable) - **5%** ✅
@@ -54,13 +54,13 @@
   - [x] Responsive grid layout (1/2/3 columns based on width)
 
 ### Collection Page (Dummy)
-- [x] Page displaying products within one collection including dropdowns and filters (hardcoded data acceptable, widgets do not have to function) - **5%**
+- [x] Page displaying products within one collection including dropdowns and filters (hardcoded data acceptable, widgets do not have to function) - **5%** ✅
 - Reference: Collection Example
 - **Tests:**
   - [x] Collection detail page exists
   - [x] Page displays products for a specific collection (loaded from service)
   - [x] Filter dropdowns are visible (sort by, price range, etc.)
-  - [ ] Pagination controls are visible (placeholder shown)
+  - [x] Pagination controls are visible (placeholder shown)
   - [x] Products display in grid layout
   - [x] Widgets display properly (functionality implemented for sort/filter basic cases)
 
@@ -119,11 +119,11 @@
 ## Intermediate (35%)
 
 ### Dynamic Collections Page
-- [x] Collections page populated from data models or services (basic) - **6%**
+- [x] Collections page populated from data models or services (basic) - **6%** ✅
 - Reference: Collections
 - **Tests:**
   - [x] Collections loaded from data model/service (assets JSON via `DataService`)
-  - [ ] Sort dropdown functions (basic UI present)
+  - [x] Sort dropdown functions (basic UI present)
   - [ ] Filter checkboxes work (not implemented)
   - [ ] Pagination buttons navigate between pages
   - [ ] Current page indicator works
@@ -170,7 +170,7 @@
   - [ ] Cart empties after successful checkout
 
 ### Print Shack
-- [x] Text personalisation page with associated about page, the form must dynamically update based on selected fields - **3%**
+- [x] Text personalisation page with associated about page, the form must dynamically update based on selected fields - **3%** ✅
 - Reference: Personalisation
 - **Tests:**
   - [x] Print Shack page accessible via route (`/print`)
