@@ -17,11 +17,15 @@ class DataService {
   List<Product>? _products;
   List<Collection>? _collections;
 
+  // Asset loader function (overridable for tests)
+  // Defaults to using Flutter's rootBundle.loadString
+  static Future<String> Function(String path) assetLoader =
+      (String path) => rootBundle.loadString(path);
+
   Future<void> _loadData() async {
     if (_products != null && _collections != null) return;
 
-    final String jsonString =
-        await rootBundle.loadString('assets/data/products.json');
+    final String jsonString = await assetLoader('assets/data/products.json');
     final Map<String, dynamic> jsonData = json.decode(jsonString);
 
     _products = (jsonData['products'] as List)
