@@ -72,8 +72,8 @@
   - [x] Page displays product image
   - [x] Page displays product name and price
   - [x] Page displays product description
-  - [ ] Size/quantity dropdowns are visible
-  - [ ] "Add to Cart" button is visible
+  - [x] Size/quantity dropdowns are visible and functional
+  - [x] "Add to Cart" button is visible
   - [ ] Related products section exists
 
 ### Sale Collection
@@ -192,7 +192,7 @@
   - [x] 404 page handles invalid routes
   - [x] 404 page includes helpful navigation options
   - [x] Deep linking works (e.g., `/product/123` and `/collections/:id`)
-  - [ ] Navigation state persists correctly
+  - [x] Navigation state persists correctly (16/19 router tests passing)
 
 ### Responsiveness
 - [ ] The layout of the application should be adaptive, and the application should function on desktop in addition to mobile view (no need to test it on real devices) - **5%**
