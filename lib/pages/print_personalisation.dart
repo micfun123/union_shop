@@ -182,7 +182,9 @@ class _PrintPersonalisationPageState extends State<PrintPersonalisationPage> {
                   onChanged: (v) => setState(() => includeBorder = v ?? false),
                 ),
                 const SizedBox(width: 8),
-                const Text('Include border around text'),
+                const Flexible(
+                  child: Text('Include border around text'),
+                ),
               ],
             ),
             const SizedBox(height: 8),

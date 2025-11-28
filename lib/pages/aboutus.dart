@@ -5,14 +5,6 @@ import 'package:union_shop/widgets/footer.dart';
 class Aboutus extends StatelessWidget {
   const Aboutus({super.key});
 
-  void navigateToHome(BuildContext context) {
-    Navigator.pushNamedAndRemoveUntil(context, '/', (route) => false);
-  }
-
-  void placeholderCallbackForButtons() {
-    // This is the event handler for buttons that don't work yet
-  }
-
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
@@ -55,4 +47,3 @@ class Aboutus extends StatelessWidget {
     );
   }
 }
-

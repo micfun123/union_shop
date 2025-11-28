@@ -197,9 +197,9 @@ class _CollectionDetailPageState extends State<CollectionDetailPage> {
                     // Filters and sorting
                     Row(
                       children: [
-                        SizedBox(
-                          width: 200,
+                        Expanded(
                           child: DropdownButtonFormField<String>(
+                            isExpanded: true,
                             value: sortBy,
                             items: const [
                               DropdownMenuItem(
@@ -228,9 +228,9 @@ class _CollectionDetailPageState extends State<CollectionDetailPage> {
                           ),
                         ),
                         const SizedBox(width: 16),
-                        SizedBox(
-                          width: 200,
+                        Expanded(
                           child: DropdownButtonFormField<String>(
+                            isExpanded: true,
                             value: priceRange,
                             items: const [
                               DropdownMenuItem(

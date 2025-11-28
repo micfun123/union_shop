@@ -43,16 +43,16 @@ class _CollectionsPageState extends State<CollectionsPage> {
   @override
   Widget build(BuildContext context) {
     if (isLoading) {
-      return Scaffold(
+      return const Scaffold(
         body: Column(
           children: [
-            const AppHeader(),
-            const Expanded(
+            AppHeader(),
+            Expanded(
               child: Center(
                 child: CircularProgressIndicator(),
               ),
             ),
-            const AppFooter(),
+            AppFooter(),
           ],
         ),
       );
@@ -149,7 +149,7 @@ class _CollectionCard extends StatelessWidget {
                         end: Alignment.bottomCenter,
                         colors: [
                           Colors.transparent,
-                          Colors.black.withOpacity(0.4)
+                          Colors.black.withValues(alpha: 0.4)
                         ],
                       ),
                     ),

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:union_shop/main.dart';
-import 'package:union_shop/router.dart' as router;
 import 'package:union_shop/services/data_service.dart';
 
 void main() {
@@ -53,8 +52,9 @@ void main() {
             'BIG SALE! OUR ESSENTIAL RANGE HAS DROPPED IN PRICE! OVER 20% OFF! COME GRAB YOURS WHILE STOCK LASTS!'),
         findsOneWidget,
       );
-      expect(find.text('Placeholder Hero Title'), findsOneWidget);
-      expect(find.text('PRODUCTS SECTION'), findsOneWidget);
+      expect(find.text('2026 Union Shop'), findsOneWidget);
+      expect(find.text('An exciting new year for the Union Shop.'),
+          findsOneWidget);
       expect(find.text('BROWSE PRODUCTS'), findsOneWidget);
     });
 
