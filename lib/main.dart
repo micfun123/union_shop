@@ -3,23 +3,52 @@ import 'package:go_router/go_router.dart';
 import 'package:union_shop/router.dart';
 import 'package:union_shop/widgets/header.dart';
 import 'package:union_shop/widgets/footer.dart';
+import 'dart:convert';
+
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:union_shop/models/cart_scope.dart';
 import 'package:union_shop/models/cart.dart';
 import 'package:union_shop/models/product.dart';
 import 'package:union_shop/services/data_service.dart';
 
-void main() {
-  runApp(const UnionShopApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  final prefs = await SharedPreferences.getInstance();
+  Cart initialCart = Cart();
+  final raw = prefs.getString('cart');
+  if (raw != null && raw.isNotEmpty) {
+    try {
+      final Map<String, dynamic> json = jsonDecode(raw);
+      initialCart = Cart.fromJson(json);
+    } catch (_) {
+      // ignore and start with empty cart
+      initialCart = Cart();
+    }
+  }
+
+  final notifier = ValueNotifier<Cart>(initialCart);
+
+  // Save cart to SharedPreferences whenever it changes.
+  notifier.addListener(() async {
+    try {
+      final jsonStr = jsonEncode(notifier.value.toJson());
+      await prefs.setString('cart', jsonStr);
+    } catch (_) {
+      // ignore persistence errors
+    }
+  });
+
+  runApp(UnionShopApp(cartNotifier: notifier));
 }
 
 class UnionShopApp extends StatelessWidget {
-  const UnionShopApp({super.key});
+  final ValueNotifier<Cart> cartNotifier;
+
+  const UnionShopApp({super.key, required this.cartNotifier});
 
   @override
   Widget build(BuildContext context) {
-    // Provide a simple cart notifier at the root so pages can read/update it.
-    final cartNotifier = ValueNotifier<Cart>(Cart());
-
     return CartScope(
       cartNotifier: cartNotifier,
       child: MaterialApp.router(
