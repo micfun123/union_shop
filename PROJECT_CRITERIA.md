@@ -217,7 +217,7 @@ Reference: Cart
 - Reference: Account
 
 ### Cart Management
-- [ ] Full cart functionality including quantity editing/removal, price calculations and persistence - **6%**
+- [x] Full cart functionality including quantity editing/removal, price calculations and persistence - **6%**
 - Reference: Cart
 
 ### Search System

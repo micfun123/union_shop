@@ -119,105 +119,108 @@ class _ShoppingCartPageState extends State<ShoppingCartPage> {
                         subtitle: Text(subtitleParts.join(' • ')),
                         trailing: SizedBox(
                           width: 160,
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            crossAxisAlignment: CrossAxisAlignment.end,
-                            children: [
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.end,
-                                children: [
-                                  // Decrease quantity
-                                  IconButton(
-                                    icon:
-                                        const Icon(Icons.remove_circle_outline),
-                                    onPressed: () {
-                                      if (qty - 1 <= 0) {
+                          child: SingleChildScrollView(
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              crossAxisAlignment: CrossAxisAlignment.end,
+                              children: [
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  children: [
+                                    // Decrease quantity
+                                    IconButton(
+                                      icon: const Icon(
+                                          Icons.remove_circle_outline),
+                                      onPressed: () {
+                                        if (qty - 1 <= 0) {
+                                          cartNotifier.value =
+                                              cartNotifier.value.removeItem(
+                                            productId,
+                                            size: parsed['size'],
+                                            color: parsed['color'],
+                                          );
+                                        } else {
+                                          cartNotifier.value =
+                                              cartNotifier.value.updateQuantity(
+                                            productId,
+                                            qty - 1,
+                                            size: parsed['size'],
+                                            color: parsed['color'],
+                                          );
+                                        }
+                                      },
+                                      padding: EdgeInsets.zero,
+                                      constraints: const BoxConstraints(
+                                          minWidth: 28, minHeight: 28),
+                                      iconSize: 20,
+                                      visualDensity: VisualDensity.compact,
+                                      tooltip: 'Decrease quantity',
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 6.0),
+                                      child: Text('$qty',
+                                          style: const TextStyle(fontSize: 14)),
+                                    ),
+                                    // Increase quantity
+                                    IconButton(
+                                      icon:
+                                          const Icon(Icons.add_circle_outline),
+                                      onPressed: () {
+                                        cartNotifier.value =
+                                            cartNotifier.value.updateQuantity(
+                                          productId,
+                                          qty + 1,
+                                          size: parsed['size'],
+                                          color: parsed['color'],
+                                        );
+                                      },
+                                      padding: EdgeInsets.zero,
+                                      constraints: const BoxConstraints(
+                                          minWidth: 28, minHeight: 28),
+                                      iconSize: 20,
+                                      visualDensity: VisualDensity.compact,
+                                      tooltip: 'Increase quantity',
+                                    ),
+                                  ],
+                                ),
+                                const SizedBox(height: 6),
+                                Row(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    Text(
+                                        '$currency${lineTotal.toStringAsFixed(2)}',
+                                        style: const TextStyle(
+                                            fontWeight: FontWeight.bold)),
+                                    const SizedBox(width: 8),
+                                    IconButton(
+                                      icon: const Icon(Icons.delete_outline,
+                                          color: Colors.red),
+                                      onPressed: () {
                                         cartNotifier.value =
                                             cartNotifier.value.removeItem(
                                           productId,
                                           size: parsed['size'],
                                           color: parsed['color'],
                                         );
-                                      } else {
-                                        cartNotifier.value =
-                                            cartNotifier.value.updateQuantity(
-                                          productId,
-                                          qty - 1,
-                                          size: parsed['size'],
-                                          color: parsed['color'],
+                                        ScaffoldMessenger.of(context)
+                                            .showSnackBar(
+                                          const SnackBar(
+                                              content: Text(
+                                                  'Item removed from cart')),
                                         );
-                                      }
-                                    },
-                                    padding: EdgeInsets.zero,
-                                    constraints: const BoxConstraints(
-                                        minWidth: 28, minHeight: 28),
-                                    iconSize: 20,
-                                    visualDensity: VisualDensity.compact,
-                                    tooltip: 'Decrease quantity',
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 6.0),
-                                    child: Text('$qty',
-                                        style: const TextStyle(fontSize: 14)),
-                                  ),
-                                  // Increase quantity
-                                  IconButton(
-                                    icon: const Icon(Icons.add_circle_outline),
-                                    onPressed: () {
-                                      cartNotifier.value =
-                                          cartNotifier.value.updateQuantity(
-                                        productId,
-                                        qty + 1,
-                                        size: parsed['size'],
-                                        color: parsed['color'],
-                                      );
-                                    },
-                                    padding: EdgeInsets.zero,
-                                    constraints: const BoxConstraints(
-                                        minWidth: 28, minHeight: 28),
-                                    iconSize: 20,
-                                    visualDensity: VisualDensity.compact,
-                                    tooltip: 'Increase quantity',
-                                  ),
-                                ],
-                              ),
-                              const SizedBox(height: 6),
-                              Row(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  Text(
-                                      '$currency${lineTotal.toStringAsFixed(2)}',
-                                      style: const TextStyle(
-                                          fontWeight: FontWeight.bold)),
-                                  const SizedBox(width: 8),
-                                  IconButton(
-                                    icon: const Icon(Icons.delete_outline,
-                                        color: Colors.red),
-                                    onPressed: () {
-                                      cartNotifier.value =
-                                          cartNotifier.value.removeItem(
-                                        productId,
-                                        size: parsed['size'],
-                                        color: parsed['color'],
-                                      );
-                                      ScaffoldMessenger.of(context)
-                                          .showSnackBar(
-                                        const SnackBar(
-                                            content:
-                                                Text('Item removed from cart')),
-                                      );
-                                    },
-                                    tooltip: 'Remove',
-                                    padding: EdgeInsets.zero,
-                                    constraints: const BoxConstraints(
-                                        minWidth: 24, minHeight: 24),
-                                    iconSize: 20,
-                                    visualDensity: VisualDensity.compact,
-                                  ),
-                                ],
-                              ),
-                            ],
+                                      },
+                                      tooltip: 'Remove',
+                                      padding: EdgeInsets.zero,
+                                      constraints: const BoxConstraints(
+                                          minWidth: 24, minHeight: 24),
+                                      iconSize: 20,
+                                      visualDensity: VisualDensity.compact,
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
                           ),
                         ),
                       );
