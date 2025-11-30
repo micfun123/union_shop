@@ -227,33 +227,21 @@ class _SaleProductCard extends StatelessWidget {
               flex: 3,
               child: Stack(
                 children: [
-                  product.imageUrl != null
-                      ? Image.network(
-                          product.imageUrl!,
-                          fit: BoxFit.cover,
-                          width: double.infinity,
-                          errorBuilder: (context, error, stackTrace) =>
-                              Container(
-                            color: Colors.grey[200],
-                            child: Center(
-                              child: Icon(
-                                Icons.image,
-                                size: 80,
-                                color: Colors.grey[400],
-                              ),
-                            ),
-                          ),
-                        )
-                      : Container(
-                          color: Colors.grey[200],
-                          child: Center(
-                            child: Icon(
-                              Icons.image,
-                              size: 80,
-                              color: Colors.grey[400],
-                            ),
-                          ),
+                  Image.network(
+                    product.imageUrl,
+                    fit: BoxFit.cover,
+                    width: double.infinity,
+                    errorBuilder: (context, error, stackTrace) => Container(
+                      color: Colors.grey[200],
+                      child: Center(
+                        child: Icon(
+                          Icons.image,
+                          size: 80,
+                          color: Colors.grey[400],
                         ),
+                      ),
+                    ),
+                  ),
                   Positioned(
                     top: 8,
                     right: 8,
