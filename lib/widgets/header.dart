@@ -183,7 +183,9 @@ class AppHeader extends StatelessWidget {
                       IconButton(
                         icon: const Icon(Icons.shopping_bag_outlined,
                             size: 20, color: Colors.grey),
-                        onPressed: placeholderCallbackForButtons,
+                        onPressed: () {
+                          context.go('/cart');
+                        },
                         padding: const EdgeInsets.all(8),
                         constraints:
                             const BoxConstraints(minWidth: 32, minHeight: 32),

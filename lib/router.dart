@@ -9,6 +9,7 @@ import 'package:union_shop/pages/collections.dart';
 import 'package:union_shop/pages/collection_detail.dart';
 import 'package:union_shop/pages/auth.dart';
 import 'package:union_shop/pages/sale.dart';
+import 'package:union_shop/pages/shopping_cart.dart';
 
 final GoRouter appRouter = GoRouter(
   initialLocation: '/',
@@ -54,6 +55,10 @@ final GoRouter appRouter = GoRouter(
     GoRoute(
       path: '/about',
       builder: (context, state) => const Aboutus(),
+    ),
+    GoRoute(
+      path: '/cart',
+      builder: (context, state) => const ShoppingCartPage(),
     ),
   ],
   errorBuilder: (context, state) => const NotFoundPage(),
