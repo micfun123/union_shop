@@ -63,6 +63,19 @@ class Cart {
     return total;
   }
 
+  // Calculate total price using a resolver function that maps productId -> price (double).
+  // This is useful when you have Product objects available and want to compute totals
+  // without constructing a separate map.
+  double totalPriceUsingResolver(double Function(String productId) resolver) {
+    double total = 0.0;
+    items.forEach((key, qty) {
+      final productId = _productIdFromKey(key);
+      final price = resolver(productId);
+      total += price * qty;
+    });
+    return total;
+  }
+
   // Internal helper to extract the productId from the composite key.
   static String _productIdFromKey(String key) {
     // The key format is '<productId>-<size>-<color>'. Product IDs themselves
