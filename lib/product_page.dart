@@ -3,6 +3,8 @@ import 'package:union_shop/widgets/header.dart';
 import 'package:union_shop/widgets/footer.dart';
 import 'package:union_shop/models/product.dart';
 import 'package:union_shop/services/data_service.dart';
+import 'package:union_shop/models/cart.dart';
+import 'package:union_shop/models/cart_scope.dart';
 
 class ProductPage extends StatefulWidget {
   final String productId;
@@ -300,14 +302,30 @@ class _ProductPageState extends State<ProductPage> {
 
                   const SizedBox(height: 24),
 
-                  // Add to Cart button (placeholder)
+                  // Add to Cart button
                   SizedBox(
                     width: double.infinity,
                     height: 50,
                     child: ElevatedButton(
-                      onPressed: placeholderCallbackForButtons,
+                      onPressed: () {
+                        // Use the shared CartScope ValueNotifier to update the cart
+                        final cartNotifier = CartScope.of(context);
+                        cartNotifier.value = cartNotifier.value.addItem(
+                          product!.id,
+                          quantity,
+                          size: selectedSize,
+                          color: selectedColor,
+                        );
+
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text('Product added to cart'),
+                            duration: Duration(seconds: 2),
+                          ),
+                        );
+                      },
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: const Color(0xFF4d2963),
+                        backgroundColor: Theme.of(context).colorScheme.primary,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(8),
                         ),
