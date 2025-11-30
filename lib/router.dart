@@ -53,12 +53,12 @@ final GoRouter appRouter = GoRouter(
       builder: (context, state) => const SalePage(),
     ),
     GoRoute(
-      path: '/about',
-      builder: (context, state) => const Aboutus(),
-    ),
-    GoRoute(
       path: '/cart',
       builder: (context, state) => const ShoppingCartPage(),
+    ),
+    GoRoute(
+      path: '/about',
+      builder: (context, state) => const Aboutus(),
     ),
   ],
   errorBuilder: (context, state) => const NotFoundPage(),
