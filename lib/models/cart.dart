@@ -50,6 +50,30 @@ class Cart {
   // Clear cart
   Cart clear() => Cart(items: {});
 
+  // Total price
+  // Calculate total price given a mapping of productId -> price (double).
+  // The cart stores keys in the format: "productId-size-color" (where size/color may be 'none').
+  double totalPrice(Map<String, double> productPrices) {
+    double total = 0.0;
+    items.forEach((key, qty) {
+      final productId = _productIdFromKey(key);
+      final price = productPrices[productId] ?? 0.0;
+      total += price * qty;
+    });
+    return total;
+  }
+
+  // Internal helper to extract the productId from the composite key.
+  static String _productIdFromKey(String key) {
+    // The key format is '<productId>-<size>-<color>'. Product IDs themselves
+    // may contain dashes, so find the second-to-last '-' and take everything
+    // before it as the productId.
+    final last = key.lastIndexOf('-');
+    final secondLast = key.lastIndexOf('-', last - 1);
+    if (secondLast <= 0) return key;
+    return key.substring(0, secondLast);
+  }
+
   // Convert to JSON
   Map<String, dynamic> toJson() => {'items': items};
 

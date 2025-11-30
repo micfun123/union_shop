@@ -3,6 +3,8 @@ import 'package:go_router/go_router.dart';
 import 'package:union_shop/router.dart';
 import 'package:union_shop/widgets/header.dart';
 import 'package:union_shop/widgets/footer.dart';
+import 'package:union_shop/models/cart_scope.dart';
+import 'package:union_shop/models/cart.dart';
 
 void main() {
   runApp(const UnionShopApp());
@@ -13,13 +15,19 @@ class UnionShopApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
-      title: 'Union Shop',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF4d2963)),
+    // Provide a simple cart notifier at the root so pages can read/update it.
+    final cartNotifier = ValueNotifier<Cart>(Cart());
+
+    return CartScope(
+      cartNotifier: cartNotifier,
+      child: MaterialApp.router(
+        title: 'Union Shop',
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+          colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF4d2963)),
+        ),
+        routerConfig: appRouter,
       ),
-      routerConfig: appRouter,
     );
   }
 }
