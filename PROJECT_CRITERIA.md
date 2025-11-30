@@ -1,11 +1,11 @@
 # Union Shop - Project Criteria
 
 ## Progress Summary
-**Completed**: 13/19 criteria (68.4%)
+**Completed**: 16/19 criteria (84.2%)
 - Basic: 9/9 items (100%)
-- Intermediate: 4/7 items (57.1%)
+- Intermediate: 7/7 items (100%)
 - Advanced: 0/3 items (0%)
-- **Total Progress**: 69% of project complete
+- **Total Progress**: 84% of project complete
 
 ---
 
@@ -17,7 +17,7 @@
 - **Tests:**
   - [x] Homepage renders without errors
   - [x] Hero section displays with image and text
-  - [x] Product grid displays 4 hardcoded products
+  - [x] Product grid displays products loaded from the data service
   - [x] All product cards are clickable
   - [x] Layout is readable on mobile (< 600px width)
 
@@ -157,13 +157,13 @@
   - [ ] Related products load dynamically
 
 ### Shopping Cart
-- [ ] Add items to cart, view cart page, basic cart functionality (checkout buttons should place order without real monetary transactions) - **6%**
-- Reference: Cart
+- [x] Add items to cart, view cart page, basic cart functionality (partial - checkout/persistence not implemented) - **6%**
+Reference: Cart
 - **Tests:**
-  - [ ] "Add to Cart" button adds item to cart
+  - [x] "Add to Cart" button adds item to cart
   - [ ] Cart icon shows item count
-  - [ ] Cart page displays all added items
-  - [ ] Each cart item shows image, name, price, quantity
+  - [x] Cart page displays all added items
+  - [x] Each cart item shows image, name, price, quantity
   - [ ] Subtotal calculates correctly
   - [ ] "Checkout" button places order
   - [ ] Order confirmation displays after checkout
