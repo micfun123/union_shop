@@ -89,10 +89,12 @@ class _ShoppingCartPageState extends State<ShoppingCartPage> {
               final lineTotal = price * qty;
 
               final subtitleParts = <String>[];
-              if (parsed['size'] != null)
+              if (parsed['size'] != null) {
                 subtitleParts.add('Size: ${parsed['size']}');
-              if (parsed['color'] != null)
+              }
+              if (parsed['color'] != null) {
                 subtitleParts.add('Color: ${parsed['color']}');
+              }
               subtitleParts.add('Quantity: $qty');
 
               return ListTile(
@@ -105,8 +107,40 @@ class _ShoppingCartPageState extends State<ShoppingCartPage> {
                     : const Icon(Icons.image),
                 title: Text(title),
                 subtitle: Text(subtitleParts.join(' • ')),
-                trailing: Text('$currency${lineTotal.toStringAsFixed(2)}',
-                    style: const TextStyle(fontWeight: FontWeight.bold)),
+                trailing: SizedBox(
+                  width: 110,
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      Text('$currency${lineTotal.toStringAsFixed(2)}',
+                          style: const TextStyle(fontWeight: FontWeight.bold)),
+                      // compact delete button to avoid ListTile overflow
+                      IconButton(
+                        icon:
+                            const Icon(Icons.delete_outline, color: Colors.red),
+                        onPressed: () {
+                          // remove this item from the cart
+                          cartNotifier.value = cartNotifier.value.removeItem(
+                            productId,
+                            size: parsed['size'],
+                            color: parsed['color'],
+                          );
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                                content: Text('Item removed from cart')),
+                          );
+                        },
+                        tooltip: 'Remove',
+                        padding: EdgeInsets.zero,
+                        constraints:
+                            const BoxConstraints(minWidth: 24, minHeight: 24),
+                        iconSize: 20,
+                        visualDensity: VisualDensity.compact,
+                      ),
+                    ],
+                  ),
+                ),
               );
             },
           );

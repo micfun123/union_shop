@@ -26,7 +26,7 @@
       "price": "5.00",
       "currency": "£",
       "collectionId": "study-essentials",
-      "imageUrl": "https://shop.upsu.net/cdn/shop/files/PortsmouthCityMagnet1_1024x1024@2x.jpg?v=1752230282",
+      "imageUrl": "assets/images/notebook-a.png",
       "description": "High-quality notebook for all your study needs",
       "inStock": true
     },
@@ -36,7 +36,7 @@
       "price": "3.50",
       "currency": "£",
       "collectionId": "study-essentials",
-      "imageUrl": "https://shop.upsu.net/cdn/shop/files/PortsmouthCityMagnet1_1024x1024@2x.jpg?v=1752230282",
+      "imageUrl": "assets/images/pen-set.png",
       "description": "Set of premium ballpoint pens",
       "inStock": true
     },
@@ -46,7 +46,7 @@
       "price": "2.00",
       "currency": "£",
       "collectionId": "study-essentials",
-      "imageUrl": "https://shop.upsu.net/cdn/shop/files/PortsmouthCityMagnet1_1024x1024@2x.jpg?v=1752230282",
+      "imageUrl": "assets/images/sticky-notes.png",
       "description": "Colorful sticky notes for organization",
       "inStock": true
     },
@@ -56,7 +56,7 @@
       "price": "1.20",
       "currency": "£",
       "collectionId": "study-essentials",
-      "imageUrl": "https://shop.upsu.net/cdn/shop/files/PortsmouthCityMagnet1_1024x1024@2x.jpg?v=1752230282",
+      "imageUrl": "assets/images/ruler.png",
       "description": "30cm transparent ruler",
       "inStock": true,
       "discount": "0.10"
@@ -67,7 +67,7 @@
       "price": "4.50",
       "currency": "£",
       "collectionId": "study-essentials",
-      "imageUrl": "https://shop.upsu.net/cdn/shop/files/PortsmouthCityMagnet1_1024x1024@2x.jpg?v=1752230282",
+      "imageUrl": "assets/images/folder-pack.png",
       "description": "Pack of 5 document folders",
       "inStock": true
     },
@@ -77,7 +77,7 @@
       "price": "1.80",
       "currency": "£",
       "collectionId": "study-essentials",
-      "imageUrl": "https://shop.upsu.net/cdn/shop/files/PortsmouthCityMagnet1_1024x1024@2x.jpg?v=1752230282",
+      "imageUrl": "assets/images/highlighter.png",
       "description": "Yellow highlighter pen",
       "inStock": true
     },
@@ -87,7 +87,7 @@
       "price": "15.00",
       "currency": "£",
       "collectionId": "university-apparel",
-      "imageUrl": "https://shop.upsu.net/cdn/shop/files/PortsmouthCityMagnet1_1024x1024@2x.jpg?v=1752230282",
+      "imageUrl": "assets/images/portsmouth-tshirt.png",
       "description": "Official Portsmouth University branded t-shirt",
       "inStock": true,
       "sizes": [
@@ -110,7 +110,7 @@
       "price": "35.00",
       "currency": "£",
       "collectionId": "university-apparel",
-      "imageUrl": "https://shop.upsu.net/cdn/shop/files/PortsmouthCityMagnet1_1024x1024@2x.jpg?v=1752230282",
+      "imageUrl": "assets/images/portsmouth-hoodie.png",
       "description": "Comfortable hoodie with university logo",
       "inStock": true,
       "sizes": [
@@ -127,6 +127,16 @@
         "Grey",
         "Burgundy"
       ]
+    },
+    {
+      "id": "portsmouth-magnet",
+      "title": "Portsmouth Magnet",
+      "price": "5.00",
+      "currency": "£",
+      "collectionId": "accessories",
+      "imageUrl": "assets/images/fridgeMagnet.png",
+      "description": "Colorful sticky notes for organization",
+      "inStock": true
     }
   ]
 }
