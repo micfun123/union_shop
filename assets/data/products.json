@@ -4,19 +4,19 @@
       "id": "study-essentials",
       "name": "Study Essentials",
       "description": "Everything you need for your studies",
-      "imageUrl": "https://shop.upsu.net/cdn/shop/files/PortsmouthCityPostcard2_1024x1024@2x.jpg?v=1752232561"
+      "imageUrl": "assets/images/study-essentials.png"
     },
     {
       "id": "university-apparel",
       "name": "University Apparel",
       "description": "Show your Portsmouth pride",
-      "imageUrl": "https://shop.upsu.net/cdn/shop/files/PortsmouthCityMagnet1_1024x1024@2x.jpg?v=1752230282"
+      "imageUrl": "assets/images/university-apparel.png"
     },
     {
       "id": "accessories",
       "name": "Accessories",
       "description": "Essential accessories for student life",
-      "imageUrl": "https://shop.upsu.net/cdn/shop/files/PortsmouthCityPostcard2_1024x1024@2x.jpg?v=1752232561"
+      "imageUrl": "assets/images/accessories.png"
     }
   ],
   "products": [
