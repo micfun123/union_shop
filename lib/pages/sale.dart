@@ -188,22 +188,6 @@ class _SalePageState extends State<SalePage> {
   }
 }
 
-class _SaleProduct {
-  final String title;
-  final String originalPrice;
-  final String salePrice;
-  final String discount;
-  final String imageUrl;
-
-  const _SaleProduct({
-    required this.title,
-    required this.originalPrice,
-    required this.salePrice,
-    required this.discount,
-    required this.imageUrl,
-  });
-}
-
 class _SaleProductCard extends StatelessWidget {
   final Product product;
 

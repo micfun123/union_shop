@@ -35,9 +35,13 @@ class AppFooter extends StatelessWidget {
                     const SizedBox(height: 13),
                     Row(
                       children: [
-                        TextButton(onPressed: placeholder, child: const Text('Privacy Policy')),
+                        TextButton(
+                            onPressed: placeholder,
+                            child: const Text('Privacy Policy')),
                         const SizedBox(width: 8),
-                        TextButton(onPressed: placeholder, child: const Text('Terms of Service')),
+                        TextButton(
+                            onPressed: placeholder,
+                            child: const Text('Terms of Service')),
                       ],
                     ),
                     const SizedBox(height: 12),
@@ -46,9 +50,11 @@ class AppFooter extends StatelessWidget {
                       style: TextStyle(fontSize: 14, color: Colors.black),
                     ),
                     const SizedBox(height: 4),
-                    const Text('Mon-Fri: 9am - 4pm', style: TextStyle(fontSize: 14)),
+                    const Text('Mon-Fri: 9am - 4pm',
+                        style: TextStyle(fontSize: 14)),
                     const SizedBox(height: 12),
-                    const Text('Help and Information:', style: TextStyle(fontSize: 14)),
+                    const Text('Help and Information:',
+                        style: TextStyle(fontSize: 14)),
                     const SizedBox(height: 4),
                     const Text('Contact Us', style: TextStyle(fontSize: 14)),
                     const SizedBox(height: 4),
@@ -66,7 +72,7 @@ class AppFooter extends StatelessWidget {
                     flex: 3,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      children: const [
+                      children: [
                         Text(
                           '© 2024 Union Shop. All rights reserved.',
                           style: TextStyle(fontSize: 14, color: Colors.grey),
@@ -83,8 +89,12 @@ class AppFooter extends StatelessWidget {
                         spacing: 16,
                         alignment: WrapAlignment.center,
                         children: [
-                          TextButton(onPressed: placeholder, child: const Text('Privacy Policy')),
-                          TextButton(onPressed: placeholder, child: const Text('Terms of Service')),
+                          TextButton(
+                              onPressed: placeholder,
+                              child: const Text('Privacy Policy')),
+                          TextButton(
+                              onPressed: placeholder,
+                              child: const Text('Terms of Service')),
                         ],
                       ),
                     ),
@@ -95,15 +105,19 @@ class AppFooter extends StatelessWidget {
                     flex: 4,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.end,
-                      children:[
+                      children: [
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.end,
                           children: [
-                            Text('Opening Hours:', style: TextStyle(fontSize: 14, color: Colors.black)),
+                            Text('Opening Hours:',
+                                style: TextStyle(
+                                    fontSize: 14, color: Colors.black)),
                             SizedBox(height: 4),
-                            Text('Mon-Fri: 9am - 4pm', style: TextStyle(fontSize: 14)),
+                            Text('Mon-Fri: 9am - 4pm',
+                                style: TextStyle(fontSize: 14)),
                             SizedBox(height: 8),
-                            Text('Help and Information:', style: TextStyle(fontSize: 14)),
+                            Text('Help and Information:',
+                                style: TextStyle(fontSize: 14)),
                             SizedBox(height: 4),
                             Text('Contact Us', style: TextStyle(fontSize: 14)),
                             Text('FAQs', style: TextStyle(fontSize: 14)),
