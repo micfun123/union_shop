@@ -230,6 +230,57 @@ class _ShoppingCartPageState extends State<ShoppingCartPage> {
               ),
             ),
 
+            // Subtotal and checkout row
+            ValueListenableBuilder<Cart>(
+              valueListenable: cartNotifier,
+              builder: (context, cart, _) {
+                if (cart.isEmpty) return const SizedBox.shrink();
+
+                // Build price map from loaded products
+                final productPrices = <String, double>{};
+                _products.forEach((id, p) {
+                  productPrices[id] = double.tryParse(p.price) ?? 0.0;
+                });
+
+                final subtotal = cart.totalPrice(productPrices);
+                final currency = _products.values.isNotEmpty
+                    ? _products.values.first.currency
+                    : '£';
+
+                return Padding(
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 20.0, vertical: 12.0),
+                  child: ConstrainedBox(
+                    constraints: const BoxConstraints(maxWidth: 1100),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: [
+                            Text('Subtotal',
+                                style: TextStyle(
+                                    fontSize: 16, color: Colors.grey[700])),
+                            const SizedBox(height: 4),
+                            Text('$currency${subtotal.toStringAsFixed(2)}',
+                                style: const TextStyle(
+                                    fontSize: 18, fontWeight: FontWeight.bold)),
+                          ],
+                        ),
+                        const SizedBox(width: 16),
+                        ElevatedButton(
+                          onPressed: () {
+                            // Placeholder checkout action
+                          },
+                          child: const Text('Checkout'),
+                        ),
+                      ],
+                    ),
+                  ),
+                );
+              },
+            ),
+
             const AppFooter(),
           ],
         ),
