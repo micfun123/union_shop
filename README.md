@@ -102,10 +102,3 @@ Top-level
   - `test/cart_test.dart` — unit tests for `Cart` model.
   - `test/shopping_cart_test.dart` — widget tests for the cart page.
 
-Development tips
-----------------
-
-- Tests: override `DataService.assetLoader` in `setUp()` to return JSON fixtures. This is more reliable than mocking the asset method channel.
-- Responsive testing: wrap widgets in `MediaQuery` during widget tests to simulate different screen sizes instead of modifying test window internals (deprecated APIs).
-- Use `tester.pumpAndSettle()` with care; sometimes limited pump loops reduce hangs from network/image futures.
-
