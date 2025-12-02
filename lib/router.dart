@@ -6,6 +6,7 @@ import 'package:union_shop/pages/print_personalisation.dart';
 import 'package:union_shop/pages/print_about.dart';
 import 'package:union_shop/pages/not_found.dart';
 import 'package:union_shop/pages/collections.dart';
+import 'package:union_shop/pages/search.dart';
 import 'package:union_shop/pages/collection_detail.dart';
 import 'package:union_shop/pages/auth.dart';
 import 'package:union_shop/pages/sale.dart';
@@ -28,6 +29,13 @@ final GoRouter appRouter = GoRouter(
     GoRoute(
       path: '/collections',
       builder: (context, state) => const CollectionsPage(),
+    ),
+    GoRoute(
+      path: '/search',
+      builder: (context, state) {
+        final initialQuery = state.uri.queryParameters['q'] ?? '';
+        return SearchPage(initialQuery: initialQuery);
+      },
     ),
     GoRoute(
       path: '/collections/:collectionId',

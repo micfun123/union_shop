@@ -165,7 +165,9 @@ class AppHeader extends StatelessWidget {
                       IconButton(
                         icon: const Icon(Icons.search,
                             size: 20, color: Colors.grey),
-                        onPressed: placeholderCallbackForButtons,
+                        onPressed: () {
+                          context.go('/search');
+                        },
                         padding: const EdgeInsets.all(8),
                         constraints:
                             const BoxConstraints(minWidth: 32, minHeight: 32),

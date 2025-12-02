@@ -72,4 +72,17 @@ class DataService {
       return null;
     }
   }
+
+  /// Simple client-side search over loaded products.
+  /// Matches against title and description (case-insensitive substring).
+  Future<List<Product>> searchProducts(String q) async {
+    await _loadData();
+    final term = q.toLowerCase().trim();
+    if (term.isEmpty) return [];
+    return _products!
+        .where((p) =>
+            p.title.toLowerCase().contains(term) ||
+            p.description.toLowerCase().contains(term))
+        .toList();
+  }
 }
