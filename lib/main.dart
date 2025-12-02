@@ -4,6 +4,7 @@ import 'package:union_shop/router.dart';
 import 'package:union_shop/widgets/header.dart';
 import 'package:union_shop/widgets/footer.dart';
 import 'dart:convert';
+import 'dart:async'; // Required for Timer
 
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:union_shop/models/cart_scope.dart';
@@ -63,8 +64,56 @@ class UnionShopApp extends StatelessWidget {
   }
 }
 
-class HomeScreen extends StatelessWidget {
+// HomeScreen modified to StatefulWidget for carousel
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  // Image assets for the carousel
+  final List<String> _heroImages = [
+    'assets/images/union_shop_hero.jpg',
+    'assets/images/union_shop_hero_2.jpg',
+    'assets/images/union_shop_hero_3.jpg',
+  ];
+
+  // Page controller and timer
+  final PageController _pageController = PageController();
+  late final Timer _timer;
+  int _currentPage = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    // Setup auto-scroll timer to change page every 4 seconds
+    _timer = Timer.periodic(const Duration(seconds: 4), (Timer timer) {
+      if (_currentPage < _heroImages.length - 1) {
+        _currentPage++;
+      } else {
+        _currentPage = 0;
+      }
+
+      // Animate to the next page
+      if (_pageController.hasClients) {
+        _pageController.animateToPage(
+          _currentPage,
+          duration: const Duration(milliseconds: 600),
+          curve: Curves.easeOut,
+        );
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    // Dispose of the timer and controller
+    _timer.cancel();
+    _pageController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -74,29 +123,37 @@ class HomeScreen extends StatelessWidget {
           children: [
             const AppHeader(),
 
-            // Hero Section
+            // Hero Section (Now a Carousel)
             SizedBox(
               height: 400,
               width: double.infinity,
               child: Stack(
                 children: [
-                  // Background image with overlay
+                  // Background Carousel using PageView
                   Positioned.fill(
-                    child: Image.asset(
-                      'assets/images/union_shop_hero.jpg',
-                      fit: BoxFit.cover,
-                      errorBuilder: (context, error, stackTrace) {
-                        return Container(
-                          color: Colors.grey[300],
+                    child: PageView.builder(
+                      controller: _pageController,
+                      itemCount: _heroImages.length,
+                      itemBuilder: (context, index) {
+                        final imagePath = _heroImages[index];
+                        return Image.asset(
+                          imagePath,
+                          fit: BoxFit.cover,
+                          errorBuilder: (context, error, stackTrace) {
+                            return Container(
+                              color: Colors.grey[300],
+                            );
+                          },
                         );
                       },
                     ),
                   ),
+
                   Positioned.fill(
-                    child: Container(
-                      color: Colors.black.withValues(alpha: 0.7),
-                    ),
+                    child:
+                        Container(color: Colors.black.withValues(alpha: 0.7)),
                   ),
+
                   // Content overlay
                   Positioned(
                     left: 24,
