@@ -137,6 +137,17 @@
       "imageUrl": "assets/images/fridgeMagnet.png",
       "description": "Colorful sticky notes for organization",
       "inStock": true
+    },
+    {
+      "id": "postcard",
+      "title": "Portsmouth Postcard",
+      "price": "1.00",
+      "currency": "£",
+      "collectionId": "accessories",
+      "imageUrl": "assets/images/post-card.png",
+      "description": "Postcard featuring iconic Portsmouth landmarks",
+      "inStock": true
+    
     }
   ]
 }
