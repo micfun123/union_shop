@@ -42,10 +42,6 @@ class _ProductPageState extends State<ProductPage> {
     }
   }
 
-  void placeholderCallbackForButtons() {
-    // This is the event handler for buttons that don't work yet
-  }
-
   @override
   Widget build(BuildContext context) {
     if (isLoading) {
