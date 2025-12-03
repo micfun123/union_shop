@@ -102,3 +102,16 @@ Top-level
   - `test/cart_test.dart` — unit tests for `Cart` model.
   - `test/shopping_cart_test.dart` — widget tests for the cart page.
 
+
+Screenshots
+-----------
+
+| Home Page | Product Page |
+| :---: | :---: |
+| ![Home](screenshots/home_desktop.png) | ![Product](screenshots/product_detail.png) |
+
+| Shopping Cart | Mobile View |
+| :---: | :---: |
+| ![Cart](screenshots/cart_view.png) | ![Mobile](screenshots/mobile_responsive.png) |
+
+
