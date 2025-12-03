@@ -91,10 +91,19 @@ class _ShoppingCartPageState extends State<ShoppingCartPage> {
                       final productId = parsed['productId'] ?? key;
                       final product = _products[productId];
 
-                      final title = product?.title ?? productId;
-                      final currency = product?.currency ?? '£';
-                      final price =
+                      String title = product?.title ?? productId;
+                      String currency = product?.currency ?? '£';
+                      double price =
                           double.tryParse(product?.price ?? '0') ?? 0.0;
+                      String imageAsset = '';
+
+                      if (product == null && productId.startsWith('print-')) {
+                        title = 'Print (personalised)';
+                        currency = '£';
+                        price = 9.50;
+                        imageAsset = 'assets/images/union_shop_hero.jpg';
+                      }
+
                       final lineTotal = price * qty;
 
                       final subtitleParts = <String>[];
@@ -107,14 +116,21 @@ class _ShoppingCartPageState extends State<ShoppingCartPage> {
                       subtitleParts.add('Quantity: $qty');
 
                       return ListTile(
-                        leading: product != null && product.imageUrl.isNotEmpty
-                            ? Image.network(product.imageUrl,
-                                width: 56,
-                                height: 56,
-                                fit: BoxFit.cover,
-                                errorBuilder: (c, e, s) =>
-                                    const Icon(Icons.image))
-                            : const Icon(Icons.image),
+                        leading: (product != null && product.imageUrl.isNotEmpty)
+                          ? Image.network(product.imageUrl,
+                            width: 56,
+                            height: 56,
+                            fit: BoxFit.cover,
+                            errorBuilder: (c, e, s) =>
+                              const Icon(Icons.image))
+                          : (imageAsset.isNotEmpty
+                            ? Image.asset(imageAsset,
+                              width: 56,
+                              height: 56,
+                              fit: BoxFit.cover,
+                              errorBuilder: (c, e, s) =>
+                                const Icon(Icons.image))
+                            : const Icon(Icons.image)),
                         title: Text(title),
                         subtitle: Text(subtitleParts.join(' • ')),
                         trailing: SizedBox(

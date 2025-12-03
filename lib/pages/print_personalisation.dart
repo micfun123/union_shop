@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:union_shop/widgets/header.dart';
 import 'package:union_shop/widgets/footer.dart';
+import 'package:union_shop/models/cart.dart';
+import 'package:union_shop/models/cart_scope.dart';
 import 'package:go_router/go_router.dart';
 
 class PrintPersonalisationPage extends StatefulWidget {
@@ -95,10 +97,16 @@ class _PrintPersonalisationPageState extends State<PrintPersonalisationPage> {
                       children: [
                         ElevatedButton(
                           onPressed: () {
-                            // placeholder: add to cart
+                            // Generate a stable-ish id for personalised prints
+                            final generatedId =
+                                'print-${DateTime.now().millisecondsSinceEpoch}';
+
+                            final cartNotifier = CartScope.of(context);
+                            cartNotifier.value =
+                                cartNotifier.value.addItem(generatedId, 1);
+
                             ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(
-                                  content: Text('Added to cart (demo)')),
+                              const SnackBar(content: Text('Added to cart')),
                             );
                           },
                           child: const Text('Add to cart'),
