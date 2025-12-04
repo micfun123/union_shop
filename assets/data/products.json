@@ -148,6 +148,26 @@
       "description": "Postcard featuring iconic Portsmouth landmarks",
       "inStock": true
     
+    },
+    {
+      "id": "keychain",
+      "title": "Portsmouth Keychain",
+      "price": "3.00",
+      "currency": "£",
+      "collectionId": "accessories",
+      "imageUrl": "assets/images/uop_keychain.png",
+      "description": "Durable keychain with Portsmouth University logo",
+      "inStock": true
+    },
+    {
+      "id": "tote-bag",
+      "title": "Portsmouth Tote Bag",
+      "price": "12.50",
+      "currency": "£",
+      "collectionId": "accessories",
+      "imageUrl": "assets/images/tote.jpg",
+      "description": "Eco-friendly tote bag with university branding",
+      "inStock": true
     }
   ]
 }
