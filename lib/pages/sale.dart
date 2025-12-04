@@ -65,7 +65,7 @@ class _SalePageState extends State<SalePage> {
                       gradient: LinearGradient(
                         colors: [
                           const Color(0xFF4d2963),
-                          const Color(0xFF4d2963).withOpacity(0.8),
+                          const Color(0xFF4d2963).withValues(alpha: 0.8),
                         ],
                       ),
                     ),
@@ -196,7 +196,7 @@ class _SaleProductCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // Calculate mock discount percentage for display (can be made data-driven later)
-    final discount = '20% OFF';
+    const discount = '20% OFF';
 
     return Card(
       elevation: 2,
@@ -236,9 +236,9 @@ class _SaleProductCard extends StatelessWidget {
                         color: Colors.red,
                         borderRadius: BorderRadius.circular(4),
                       ),
-                      child: Text(
+                      child: const Text(
                         discount,
-                        style: const TextStyle(
+                        style: TextStyle(
                           fontSize: 12,
                           color: Colors.white,
                           fontWeight: FontWeight.bold,

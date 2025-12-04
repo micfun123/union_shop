@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:union_shop/widgets/header.dart';
 import 'package:union_shop/widgets/footer.dart';
-import 'package:union_shop/models/cart.dart';
 import 'package:union_shop/models/cart_scope.dart';
 import 'package:go_router/go_router.dart';
 
@@ -150,7 +149,7 @@ class _PrintPersonalisationPageState extends State<PrintPersonalisationPage> {
                 style: TextStyle(fontWeight: FontWeight.bold)),
             const SizedBox(height: 8),
             DropdownButtonFormField<String>(
-              value: fontFamily,
+              initialValue: fontFamily,
               items: const [
                 DropdownMenuItem(value: 'Roboto', child: Text('Roboto')),
                 DropdownMenuItem(value: 'Lobster', child: Text('Lobster')),
@@ -200,7 +199,7 @@ class _PrintPersonalisationPageState extends State<PrintPersonalisationPage> {
                 style: TextStyle(fontWeight: FontWeight.bold)),
             const SizedBox(height: 8),
             DropdownButtonFormField<String>(
-              value: alignment,
+              initialValue: alignment,
               items: const [
                 DropdownMenuItem(value: 'Left', child: Text('Left')),
                 DropdownMenuItem(value: 'Center', child: Text('Center')),

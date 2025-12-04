@@ -8,10 +8,6 @@ class AppHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    void placeholderCallbackForButtons() {
-      // Event handler for buttons that don't do anything yet
-    }
-
     Future<void> openMobileNav() async {
       final RenderBox overlay =
           Overlay.of(context).context.findRenderObject() as RenderBox;

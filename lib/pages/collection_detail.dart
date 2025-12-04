@@ -200,7 +200,7 @@ class _CollectionDetailPageState extends State<CollectionDetailPage> {
                         Expanded(
                           child: DropdownButtonFormField<String>(
                             isExpanded: true,
-                            value: sortBy,
+                            initialValue: sortBy,
                             items: const [
                               DropdownMenuItem(
                                 value: 'Popular',
@@ -231,7 +231,7 @@ class _CollectionDetailPageState extends State<CollectionDetailPage> {
                         Expanded(
                           child: DropdownButtonFormField<String>(
                             isExpanded: true,
-                            value: priceRange,
+                            initialValue: priceRange,
                             items: const [
                               DropdownMenuItem(
                                 value: 'All',
